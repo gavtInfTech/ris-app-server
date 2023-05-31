@@ -22,9 +22,7 @@ const startServer = async () => {
   
       const app = express();
       app.use(express.json());
-      app.use(cors({
-        origin: 'https://ris-app-client.vercel.app.qwe'
-      }));
+   
       app.use(cookieParser());
   
       app.use("/auth", routerAuth);

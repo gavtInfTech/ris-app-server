@@ -23,7 +23,7 @@ const startServer = async () => {
       const app = express();
       app.use(express.json());
       app.use(cors({
-        origin: 'http://localhost:3000'
+        origin: 'https://ris-app.vercel.app'
       }));
       app.use(cookieParser());
   

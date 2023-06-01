@@ -25,7 +25,7 @@ export const login = async (req, res) => {
     if (!isPasswordCorrect) { return res.status(404).send("Неверное имя пользователя или пароль!"); } 
 
     const token = jwt.sign({id: user.id, role: user.role, organisation: user.organisation.name}, "rissecretkey");
-    return res.cookie("auth", token, {httpOnly: true, secure: true, sameSite: 'none', maxAge: 2600000}).status(200).send({role: user.role, organisation: user.organisation.name});
+    return res.cookie("auth", token, {httpOnly: true, sameSite: 'none', maxAge: 2600000}).status(200).send({role: user.role, organisation: user.organisation.name});
 }
 
 export const logout = async (req, res) => {

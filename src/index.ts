@@ -22,7 +22,9 @@ const startServer = async () => {
   
       const app = express();
       app.use(express.json());
-      app.use(cors());
+      app.use(cors({
+        origin: 'https://ris.com'
+      }));
       app.use(cookieParser());
   
       app.use("/auth", routerAuth);

@@ -29,7 +29,7 @@ export const login = async (req, res) => {
 }
 
 export const logout = async (req, res) => {
-    return res.clearCookie("auth").end();
+    return res.clearCookie("auth", {httpOnly: true, secure: true, sameSite: 'none'}).end();
 }
 
 export const deleteUser = async (req, res) => {

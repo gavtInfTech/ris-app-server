@@ -5,12 +5,13 @@ export const AppDataSource = new DataSource({
     type: "mysql",
     host: "eu-cdbr-west-03.cleardb.net",
     port: 3306,
-    username: "ba27bab06bf954",
-    password: "e76f6afb",
-    database: "heroku_d02cb3b85b0108d",
+    username: "bee4cf5bbfb96c",
+    password: "57d9e22e",
+    database: "heroku_e88d29a6a936fcf",
     timezone: '+03:00',
     synchronize: true,
     logging: true,
     entities: ["src/entities/*.ts"],
 })
-// mysql://ba27bab06bf954:e76f6afb@eu-cdbr-west-03.cleardb.net/heroku_d02cb3b85b0108d?reconnect=true
+
+// mysql://bee4cf5bbfb96c:57d9e22e@eu-cdbr-west-03.cleardb.net/heroku_e88d29a6a936fcf?reconnect=true

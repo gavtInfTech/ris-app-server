@@ -1,7 +1,7 @@
 import { LevelGp } from "../entities/LevelGp"
 import { River } from "../entities/River"
 import { AppDataSource } from "../data-source"
-import { hydropostsData } from "./levelsGpData"
+import { hydropostsData } from "./LevelsGpData"
 
 const LevelGpRepository = AppDataSource.getRepository(LevelGp)
 const RiverRepository = AppDataSource.getRepository(River)

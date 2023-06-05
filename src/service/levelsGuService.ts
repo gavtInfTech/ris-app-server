@@ -6,15 +6,13 @@ import { hydronodesData } from "./levelsGuData"
 const LevelsGuRepository = AppDataSource.getRepository(LevelGu)
 const RiverRepository = AppDataSource.getRepository(River)
 
-export const getAll =  async () => {
-    let levels = await LevelsGuRepository.find(
-        {
-            relations: {
-                river: true,
-            },
-        }
-    ); 
-    let levelsDto = [];
+export const getAll = async () => {
+    let levels = await LevelsGuRepository.find({
+      relations: {
+        river: true,
+      },
+    });
+    let levelsDto: any[] = [];
     levels.map(async (level) => {
         levelsDto.push(
             {
@@ -24,11 +22,10 @@ export const getAll =  async () => {
         )
     })
     return levelsDto;
-}
+  };
 
 export const add = async (level) => {
     let levelGu = new LevelGu();
-    let river = new River();
     let levelsGuExist = await LevelsGuRepository.find(
         {
             where: {
@@ -42,7 +39,7 @@ export const add = async (level) => {
             return undefined; 
         }
     })
-    river = await RiverRepository.findOneBy({ name: level.river });
+    const river = await RiverRepository.findOneBy({ name: level.river });
     levelGu = {
         ...level,
         river: river
@@ -53,12 +50,11 @@ export const add = async (level) => {
 
 export const change = async (level) => {
     let levelGu = new LevelGu();
-    let river = new River();
-    river = await RiverRepository.findOneBy({ name: level.river })
+    const river = await RiverRepository.findOneBy({ name: level.river });
     levelGu = {
         ...level,
-        river: river
-    }
+        river: river,
+    };
     return LevelsGuRepository.update(levelGu.id, levelGu);
 }
 
@@ -101,7 +97,7 @@ export const getAllByHydronode = async (hydronode) => {
             },
         }
     ); 
-    let levelsDto = [];
+    let levelsDto: any = [];
     levels.map(async (level) => {
         levelsDto.push(
             {

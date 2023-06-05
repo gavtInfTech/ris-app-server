@@ -7,7 +7,7 @@ export class LevelGu {
     id: string
 
     @Column()
-    name: string
+    hydronode: string
 
     @Column()
     level1: string

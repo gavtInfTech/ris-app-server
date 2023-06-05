@@ -5,8 +5,6 @@ import { hydropostsData } from "./levelsGpData"
 
 const LevelGpRepository = AppDataSource.getRepository(LevelGp)
 const RiverRepository = AppDataSource.getRepository(River)
-const date = new Date;
-const todayDate = date.toLocaleString().slice(0, 10);
 
 export const getAll =  async () => {
     let levels = await LevelGpRepository.find(
@@ -31,7 +29,6 @@ export const getAll =  async () => {
 export const add = async (level) => {
     let levelGp = new LevelGp();
     let river = new River();
-    let found = false;
     let levelsGpExist = await LevelGpRepository.find(
         {
             where: {
@@ -42,11 +39,9 @@ export const add = async (level) => {
     levelsGpExist.forEach((levelExist) => {
         let date = new Date(level.date);
         if (levelExist.date.toLocaleString().slice(0, 10) === date.toLocaleString().slice(0, 10)) {
-            found = true;
-            
+            return undefined; 
         }
     })
-    if (found) return undefined;
     river = await RiverRepository.findOneBy({ name: level.river });
     levelGp = {
         ...level,

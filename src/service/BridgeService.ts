@@ -82,7 +82,7 @@ export const deleteById = async (id) => {
     return BridgeRepository.delete(id); 
 }
 
-export const getBridgesByDate = async (date) => {
+export const getAllByDate = async (date) => {
 
     let bridges = await BridgeRepository.find(
         {

@@ -61,7 +61,7 @@ export const deleteById = async (id) => {
     return LevelsGuRepository.delete(id); 
 }
 
-export const getLevelsByDate = async (date) => {
+export const getAllByDate = async (date) => {
     let hydronodes = hydronodesData;
 
     let levels = await LevelsGuRepository.find(

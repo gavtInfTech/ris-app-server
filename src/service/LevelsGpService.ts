@@ -64,7 +64,7 @@ export const deleteById = async (id) => {
     return LevelGpRepository.delete(id); 
 }
 
-export const getLevelsByDate = async (date) => {
+export const getAllByDate = async (date) => {
     let hydroposts = hydropostsData;
 
     let levels = await LevelGpRepository.find(

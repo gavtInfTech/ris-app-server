@@ -27,28 +27,26 @@ export const getAll =  async () => {
 }
 
 export const add = async (level) => {
-    let levelGp = new LevelGp();
-    let river = new River();
-    let levelsGpExist = await LevelGpRepository.find(
+    let newLevel = new LevelGp();
+    let date = new Date(level.date);
+    let levelsExist = await LevelGpRepository.find(
         {
             where: {
-                hydropost: level.hydropost
+                date: date
+            },
+            relations: {
+                river: true,
             },
         }
     );
-    levelsGpExist.forEach((levelExist) => {
-        let date = new Date(level.date);
-        if (levelExist.date.toLocaleString().slice(0, 10) === date.toLocaleString().slice(0, 10)) {
-            return undefined; 
-        }
-    })
-    river = await RiverRepository.findOneBy({ name: level.river });
-    levelGp = {
+    if (levelsExist.find((levelExist) => levelExist.hydropost === level.hydropost)) return undefined;
+    const river = await RiverRepository.findOneBy({ name: level.river });
+    newLevel = {
         ...level,
         river: river
     }
 
-    return LevelGpRepository.save(levelGp);
+    return LevelGpRepository.save(newLevel);
 }
 
 export const change = async (level) => {

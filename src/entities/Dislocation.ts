@@ -22,10 +22,6 @@ export class Dislocation {
     @Column()
     typeOfWork: string
 
-    @PrimaryColumn({type: 'string', name: 'riverId'})
-    @ManyToOne(type => River)
-    river: River
-
     @PrimaryColumn({type: 'string', name: 'organisationId'})
     @ManyToOne(type => Organisation)
     organisation: Organisation

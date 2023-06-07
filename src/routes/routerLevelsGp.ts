@@ -8,4 +8,4 @@ routerLevelsGp.get("/getAllByHydropost", LevelsGpController.getAllByHydropost);
 routerLevelsGp.post("/add", LevelsGpController.add);
 routerLevelsGp.post("/change", verify("operator"), LevelsGpController.change);
 routerLevelsGp.delete("/delete/:id", verify("operator"), LevelsGpController.deleteById);
-routerLevelsGp.get("/getTodayLevels", LevelsGpController.getTodayLevels);
+routerLevelsGp.get("/getLevelsByDay", LevelsGpController.getLevelsByDate);

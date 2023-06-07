@@ -24,28 +24,27 @@ export const getAll = async () => {
     return levelsDto;
   };
 
-export const add = async (level) => {
-    let levelGu = new LevelGu();
-    let levelsGuExist = await LevelsGuRepository.find(
+  export const add = async (level) => {
+    let newLevel = new LevelGu();
+    let date = new Date(level.date);
+    let levelsExist = await LevelsGuRepository.find(
         {
             where: {
-                hydronode: level.hydronode
+                date: date
+            },
+            relations: {
+                river: true,
             },
         }
     );
-    levelsGuExist.forEach((levelExist) => {
-        let date = new Date(level.date);
-        if (levelExist.date.toLocaleString().slice(0, 10) === date.toLocaleString().slice(0, 10)) {
-            return undefined; 
-        }
-    })
+    if (levelsExist.find((levelExist) => levelExist.hydronode === level.hydronode)) return undefined;
     const river = await RiverRepository.findOneBy({ name: level.river });
-    levelGu = {
+    newLevel = {
         ...level,
         river: river
     }
 
-    return LevelsGuRepository.save(levelGu);
+    return LevelsGuRepository.save(newLevel);
 }
 
 export const change = async (level) => {

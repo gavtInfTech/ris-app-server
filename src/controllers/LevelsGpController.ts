@@ -18,7 +18,7 @@ export const deleteById = async (req, res) => {
     return res.end();
 }
 
-export const getTodayLevels = async (req, res) => {
+export const getLevelsByDate = async (req, res) => {
     let hydroposts = await LevelsGpService.getLevelsByDate(req.body.date);
     return res.send(hydroposts);
 }

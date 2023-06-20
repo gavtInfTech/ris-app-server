@@ -12,22 +12,21 @@ export class Depth {
     @Column()
     width: number
 
-    @Column()
+    @Column({ nullable: true })
     limitedRoll: number
 
-    @Column()
+    @Column({ nullable: true })
     planDepth: number
 
     @Column()
     date: Date
     
-    @Column()
+    @Column({ nullable: true })
     forecastDepth: number
 
-    @Column()
+    @Column({ nullable: true })
     forecastDate: Date
 
-    @PrimaryColumn({type: 'string', name: 'siteId'})
     @ManyToOne(type => Site)
     site: Site
 }

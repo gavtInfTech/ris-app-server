@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, PrimaryColumn } from "typeorm"
+import { Entity, Column, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn, JoinTable } from "typeorm"
 import { Site } from "./Site";
 
 @Entity()
@@ -21,7 +21,6 @@ export class Notice {
     @Column()
     cause3: boolean
 
-    @PrimaryColumn({type: 'string', name: 'siteId'})
-    @ManyToOne(type => Site)
-    site: Site
+    @ManyToOne(() => Site)
+    site: Site;
 }

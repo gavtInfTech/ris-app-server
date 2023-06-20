@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, PrimaryColumn } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, PrimaryColumn, IntegerType } from "typeorm"
+import { Site } from "./Site";
 
 @Entity()
 export class River {

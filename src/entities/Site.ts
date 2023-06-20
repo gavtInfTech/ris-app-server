@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, PrimaryColumn } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, PrimaryColumn, OneToMany, JoinColumn } from "typeorm"
 import { River } from "./River";
+import { Notice } from "./Notice";
 
 @Entity()
 export class Site {
@@ -9,7 +10,6 @@ export class Site {
     @Column()
     name: string
 
-    @PrimaryColumn({type: 'string', name: 'riverId'})
-    @ManyToOne(type => River)
-    river: River
+    @ManyToOne(() => River)
+    river: River;
 }

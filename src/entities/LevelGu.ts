@@ -18,7 +18,6 @@ export class LevelGu {
     @Column()
     date: Date
 
-    @PrimaryColumn({type: 'string', name: 'riverId'})
     @ManyToOne(type => River)
     river: River
 }

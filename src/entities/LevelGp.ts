@@ -21,7 +21,6 @@ export class LevelGp {
     @Column()
     date: Date
 
-    @PrimaryColumn({type: 'string', name: 'riverId'})
     @ManyToOne(type => River)
     river: River
 }

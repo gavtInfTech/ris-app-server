@@ -24,7 +24,6 @@ export class Subscription {
     @Column()
     dislocations: boolean
 
-    @PrimaryColumn({type: 'string', name: 'riverId'})
     @ManyToOne(type => River)
     river: River
 }

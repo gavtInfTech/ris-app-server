@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 import {routerAuth} from "./routes/routerAuth";
 import {routerLevelsGp} from "./routes/routerLevelsGp"
 import {routerLevelsGu} from "./routes/routerLevelsGu"
-import {routerGabs} from "./routes/routerGabs"
+import {routerDepths} from "./routes/routerDepths"
 import {routerBridges} from "./routes/routerBridges"
 import {routerDislocation} from "./routes/routerDislocation"
 import {routerNotices} from "./routes/routerNotices"
@@ -23,7 +23,7 @@ const startServer = async () => {
       const app = express();
       app.use(express.json());
       app.use(cors({
-        origin: 'https://ris-app-client.vercel.app',
+        origin: ['http://localhost:3000', 'http://192.168.1.67:3000'],
         credentials: true,
       }));
       app.use(cookieParser());
@@ -31,13 +31,13 @@ const startServer = async () => {
       app.use("/auth", routerAuth);
       app.use("/levelsGp", routerLevelsGp);
       app.use("/levelsGu", routerLevelsGu);
-      app.use("/gabs", routerGabs);
+      app.use("/depth", routerDepths);
       app.use("/bridges", routerBridges);
       app.use("/dislocation", routerDislocation);
-      app.use("/notices", routerNotices);
+      app.use("/notice", routerNotices);
       app.use("/sib", routerSib);
   
-      const server = app.listen(process.env.PORT || 8080, () => {
+      const server = app.listen(8080, () => {
         console.log("Connected!");
       });
   

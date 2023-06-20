@@ -2,12 +2,12 @@ import { Entity, Column, ManyToOne, PrimaryColumn } from "typeorm"
 import { River } from "./River";
 
 @Entity()
-export class Bridge {
+export class BridgeGab {
     @PrimaryColumn()
     id: string
 
     @Column()
-    name: string
+    bridge: string
 
     @Column()
     height: number
@@ -15,7 +15,6 @@ export class Bridge {
     @Column()
     date: Date
 
-    @PrimaryColumn({type: 'string', name: 'riverId'})
     @ManyToOne(type => River)
     river: River
 }

@@ -48,8 +48,29 @@ export const getAll = async () => {
     return levelsDto;
 }
 
+export const getLastLevels = async () => {
+
+    let levels = await LevelsGuRepository.find(
+        {
+            relations: {
+                river: true,
+            }
+        }
+    ); 
+
+    let levelsDto: any = [];
+    levels.map((level) => {
+        levelsDto.push(
+            {
+                ...level,
+                river: level.river.name
+            }
+        )
+    })
+    return levelsDto;
+}
+
 export const getAllByDate = async (date) => {
-    let hydronodes = hydronodesData;
     const currentDate = new Date(date);  
     const startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 0, 0, 0);
     const endDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 23, 59, 59);
@@ -64,17 +85,16 @@ export const getAllByDate = async (date) => {
         }
     ); 
 
-    hydronodes = hydronodes.map((hydronode) => {
-        let todayLevel = levels.find((level) => (level.hydronode === hydronode.hydronode));
-        if (todayLevel !== undefined) {
-            hydronode.level1 = todayLevel.level1;
-            hydronode.level1 = todayLevel.level2;
-            hydronode.date = todayLevel.date.toLocaleString();
-        }
-        return hydronode;
-      })
-
-    return hydronodes;
+    let levelsDto: any = [];
+    levels.map((level) => {
+        levelsDto.push(
+            {
+                ...level,
+                river: level.river.name
+            }
+        )
+    })
+    return levelsDto;
 }
 
   export const add = async (level) => {
@@ -90,9 +110,6 @@ export const getAllByDate = async (date) => {
             where: {
                 date: Between(startDate, endDate),
                 hydronode: level.hydronode
-            },
-            relations: {
-                river: true
             }
         }
     ); 

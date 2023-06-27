@@ -21,7 +21,7 @@ export const getAll = async (req, res) => {
 }
 
 export const getAllByDate = async (req, res) => {
-    let notices = await NoticeService.getAllByDate(req.body.date);
+    let notices = await NoticeService.getAllByDate(req.query.date);
     return res.send(notices);
 }
 

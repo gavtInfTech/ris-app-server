@@ -39,7 +39,7 @@ export const getAllByHydropost = async (hydropost) => {
         }
     ); 
     let levelsDto: any[] = [];
-    levels.map(async (level) => {
+    levels.map((level) => {
         levelsDto.push(
             {
                 ...level,
@@ -51,7 +51,7 @@ export const getAllByHydropost = async (hydropost) => {
 }
 
 export const getAllByDate = async (date) => {
-    let hydroposts = hydropostsData;
+
     const currentDate = new Date(date);  
     const startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 0, 0, 0);
     const endDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 23, 59, 59);
@@ -65,19 +65,16 @@ export const getAllByDate = async (date) => {
             }
         }
     ); 
-
-    hydroposts = hydroposts.map((hydropost) => {
-        let todayLevel = levels.find((level) => (level.hydropost === hydropost.hydropost));
-        if (todayLevel !== undefined) {
-            hydropost.level1 = todayLevel.level1;
-            hydropost.level1 = todayLevel.level2;
-            hydropost.date = todayLevel.date.toLocaleString();
-            hydropost.difference = todayLevel.difference;
-        }
-        return hydropost;
-      })
-
-    return hydroposts;
+    let levelsDto: any[] = [];
+    levels.map((level) => {
+        levelsDto.push(
+            {
+                ...level,
+                river: level.river.name
+            }
+        )
+    })
+    return levelsDto;
 }
 
 export const add = async (level) => {
@@ -93,9 +90,6 @@ export const add = async (level) => {
             where: {
                 date: Between(startDate, endDate),
                 hydropost: level.hydropost
-            },
-            relations: {
-                river: true
             }
         }
     ); 

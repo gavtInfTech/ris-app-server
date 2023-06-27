@@ -18,8 +18,13 @@ export const deleteById = async (req, res) => {
     return res.end();
 }
 
+export const getAll = async (req, res) => {
+    let hydroposts = await LevelsGpService.getAll();
+    return res.send(hydroposts);
+}
+
 export const getAllByDate = async (req, res) => {
-    let hydroposts = await LevelsGpService.getAllByDate(req.body.date);
+    let hydroposts = await LevelsGpService.getAllByDate(req.query.date);
     return res.send(hydroposts);
 }
 

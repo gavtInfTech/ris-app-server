@@ -18,12 +18,22 @@ export const deleteById = async (req, res) => {
     return res.end();
 }
 
+export const getAll = async (req, res) => {
+    let hydronodes = await LevelsGuService.getAll();
+    return res.send(hydronodes);
+}
+
 export const getAllByDate = async (req, res) => {
-    let hydroposts = await LevelsGuService.getAllByDate(req.body.date);
-    return res.send(hydroposts);
+    let hydronodes = await LevelsGuService.getAllByDate(req.query.date);
+    return res.send(hydronodes);
 }
 
 export const getAllByHydronode = async (req, res) => {
     let levels = await LevelsGuService.getAllByHydronode(req.query.hydropost);
     return res.send(levels);
+}
+
+export const getLastLevels = async (req, res) => {
+    let hydronodes = await LevelsGuService.getLastLevels();
+    return res.send(hydronodes);
 }

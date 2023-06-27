@@ -8,4 +8,4 @@ routerNotices.get("/getAll", NoticeController.getAll);
 routerNotices.post("/add", verify("operator"), NoticeController.add);
 routerNotices.post("/change", verify("operator"), NoticeController.change);
 routerNotices.delete("/delete/:id", verify("operator"), NoticeController.deleteById);
-routerNotices.get("/getAllByDay", NoticeController.getAllByDate);
+routerNotices.get("/getAllByDate", NoticeController.getAllByDate);

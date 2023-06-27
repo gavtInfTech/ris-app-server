@@ -19,7 +19,7 @@ export const deleteById = async (req, res) => {
 }
 
 export const getAllByDate = async (req, res) => {
-    let bridges = await BridgeGabService.getAllByDate(req.body.date);
+    let bridges = await BridgeGabService.getAllByDate(req.query.date);
     return res.send(bridges);
 }
 

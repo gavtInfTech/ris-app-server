@@ -78,7 +78,7 @@ export const getAll = async () => {
             {
                 ...notice,
                 site: notice.site.name,
-                river: notice
+                river: notice.site.river.name
             }
         )
     })

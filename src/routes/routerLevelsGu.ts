@@ -4,6 +4,7 @@ import { verify } from "../middleware/verify"
 
 export const routerLevelsGu = express.Router();
 
+routerLevelsGu.get("/getLastLevels", LevelsGuController.getLastLevels);
 routerLevelsGu.get("/getAllByHydronode", LevelsGuController.getAllByHydronode);
 routerLevelsGu.post("/add", verify("operator"), LevelsGuController.add);
 routerLevelsGu.post("/change", verify("operator"), LevelsGuController.change);

@@ -21,6 +21,6 @@ export const getAllByOrganisation = async (req, res) => {
 }
 
 export const getAllByDate = async (req, res) => {
-    let dislocations = await DislocationService.getAllByDate(req.body.date);
+    let dislocations = await DislocationService.getAllByDate(req.query.date);
     return res.send(dislocations);
 }

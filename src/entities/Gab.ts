@@ -2,7 +2,7 @@ import { Entity, Column, ManyToOne, PrimaryColumn } from "typeorm"
 import { Site } from "./Site";
 
 @Entity()
-export class Depth {
+export class Gab {
     @PrimaryColumn()
     id: string
 

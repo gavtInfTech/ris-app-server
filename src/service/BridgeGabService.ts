@@ -59,7 +59,7 @@ export const add = async (bridge) => {
             where: {
                 date: Between(startDate, endDate),
                 bridge: bridge.bridge
-            },
+            }
         }
     );
         

@@ -1,15 +1,17 @@
 import express from "express"; 
+import path from "path";
 import cors from 'cors';
 import { AppDataSource } from "./data-source"
 import cookieParser from "cookie-parser";
 import {routerAuth} from "./routes/routerAuth";
 import {routerLevelsGp} from "./routes/routerLevelsGp"
 import {routerLevelsGu} from "./routes/routerLevelsGu"
-import {routerDepths} from "./routes/routerDepths"
+import {routerGabs} from "./routes/routerGabs"
 import {routerBridges} from "./routes/routerBridges"
 import {routerDislocation} from "./routes/routerDislocation"
 import {routerNotices} from "./routes/routerNotices"
 import {routerSib} from "./routes/routerSib"
+const http = require('http');
 
 const startServer = async () => {
     try {
@@ -28,16 +30,21 @@ const startServer = async () => {
       }));
       app.use(cookieParser());
   
-      app.use("/auth", routerAuth);
-      app.use("/levelsGp", routerLevelsGp);
-      app.use("/levelsGu", routerLevelsGu);
-      app.use("/depth", routerDepths);
-      app.use("/bridges", routerBridges);
-      app.use("/dislocation", routerDislocation);
-      app.use("/notice", routerNotices);
-      app.use("/sib", routerSib);
+      app.use("/api/auth", routerAuth);
+      app.use("/api/levelsGp", routerLevelsGp);
+      app.use("/api/levelsGu", routerLevelsGu);
+      app.use("/api/gabs", routerGabs);
+      app.use("/api/bridges", routerBridges);
+      app.use("/api/dislocation", routerDislocation);
+      app.use("/api/notices", routerNotices);
+      app.use("/api/sib", routerSib);
   
-      const server = app.listen(8080, () => {
+      app.use(express.static(path.join('C:/Users/Ivan/ris-app/client/build')));
+      app.get('*', (req, res) => {
+        res.sendFile(path.join('C:/Users/Ivan/ris-app/client/build/index.html'));
+      });
+
+      const server = http.createServer(app).listen(80, '192.168.100.5', () => {
         console.log("Connected!");
       });
   

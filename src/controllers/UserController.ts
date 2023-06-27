@@ -25,11 +25,11 @@ export const login = async (req, res) => {
     if (!isPasswordCorrect) { return res.status(404).send("Неверное имя пользователя или пароль!"); } 
 
     const token = jwt.sign({id: user.id, role: user.role, organisation: user.organisation.name}, "rissecretkey");
-    return res.cookie("auth", token, {httpOnly: true, maxAge: 2600000}).status(200).send({role: user.role, organisation: user.organisation.name});
+    return res.cookie("auth", token, {httpOnly: true, maxAge: 604800000}).status(200).send({role: user.role, organisation: user.organisation.name});
 }
 
 export const logout = async (req, res) => {
-    return res.clearCookie("auth", {httpOnly: true, secure: true, sameSite: 'none'}).end();
+    return res.clearCookie("auth", {httpOnly: true}).end();
 }
 
 export const deleteUser = async (req, res) => {

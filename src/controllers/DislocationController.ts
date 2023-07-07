@@ -24,3 +24,8 @@ export const getAllByDate = async (req, res) => {
     let dislocations = await DislocationService.getAllByDate(req.query.date);
     return res.send(dislocations);
 }
+
+export const getAllByPeriod = async (req, res) => {
+    let dislocations = await DislocationService.getAllByPeriod(req.query.startPeriod, req.query.endPeriod);
+    return res.send(dislocations);
+}

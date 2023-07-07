@@ -44,10 +44,11 @@ const startServer = async () => {
         res.sendFile(path.join('C:/Users/Ivan/ris-app/client/build/index.html'));
       });
 
-      const server = http.createServer(app).listen(80, '192.168.100.5', () => {
+      const server = http.createServer(app).listen(80, '192.168.1.67', () => {
         console.log("Connected!");
+        
       });
-  
+
       return server; 
     } catch (err) {
       console.error("Error during Data Source initialization:", err);

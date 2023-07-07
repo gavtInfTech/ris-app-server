@@ -85,6 +85,36 @@ export const getAll = async () => {
     return noticesDto;
 }
 
+export const getAllByPeriod = async (startPeriod, endPeriod) => {
+    const startPeriodDate = new Date(startPeriod);  
+    const endPeriodDate = new Date(endPeriod);
+    const startDate = new Date(startPeriodDate.getFullYear(), startPeriodDate.getMonth(), startPeriodDate.getDate(), 0, 0, 0);
+    const endDate = new Date(endPeriodDate.getFullYear(), endPeriodDate.getMonth(), endPeriodDate.getDate(), 23, 59, 59);
+    let notices = await NoticeRepository.find(
+        {
+            where: {
+                date: Between(startDate, endDate)
+            },
+            relations: [
+                'site',
+                'site.river'
+            ],
+        }
+    ); 
+
+    let noticesDto: any[] = [];
+    notices.map(async (notice) => {
+        noticesDto.push(
+            {
+                ...notice,
+                site: notice.site.name,
+                river: notice.site.river.name
+            }
+        )
+    })
+    return noticesDto;
+}
+
 export const add = async (notice) => {
     let newNotice = new Notice();
     const site = await SiteRepository.findOne({ 

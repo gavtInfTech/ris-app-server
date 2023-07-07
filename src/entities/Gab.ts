@@ -13,7 +13,7 @@ export class Gab {
     width: number
 
     @Column({ nullable: true })
-    limitedRoll: number
+    limitedRoll: string
 
     @Column({ nullable: true })
     planDepth: number

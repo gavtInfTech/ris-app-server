@@ -10,3 +10,4 @@ routerLevelsGp.post("/add", verify("operator"), LevelsGpController.add);
 routerLevelsGp.post("/change", verify("operator"), LevelsGpController.change);
 routerLevelsGp.delete("/delete/:id", verify("operator"), LevelsGpController.deleteById);
 routerLevelsGp.get("/getAllByDate", LevelsGpController.getAllByDate);
+routerLevelsGp.get("/getAllByPeriod", LevelsGpController.getAllByPeriod);

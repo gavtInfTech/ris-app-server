@@ -118,3 +118,31 @@ export const getAllByDate = async (date) => {
     })
     return bridgesDto;
 }
+
+export const getAllByPeriod = async (startPeriod, endPeriod) => {
+    const startPeriodDate = new Date(startPeriod);  
+    const endPeriodDate = new Date(endPeriod);
+    const startDate = new Date(startPeriodDate.getFullYear(), startPeriodDate.getMonth(), startPeriodDate.getDate(), 0, 0, 0);
+    const endDate = new Date(endPeriodDate.getFullYear(), endPeriodDate.getMonth(), endPeriodDate.getDate(), 23, 59, 59); 
+    let bridges = await BridgeRepository.find(
+        {
+            where: {
+                date: Between(startDate, endDate)
+            },
+            relations: {
+                river: true,
+            },
+        }
+    ); 
+
+    let bridgesDto: any[] = [];
+    bridges.map(async (bridge) => {
+        bridgesDto.push(
+            {
+                ...bridge,
+                river: bridge.river.name
+            }
+        )
+    })
+    return bridgesDto;
+}

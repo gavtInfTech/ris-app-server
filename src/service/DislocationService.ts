@@ -82,6 +82,34 @@ export const getAll = async () => {
     return dislocationsDto;
 }
 
+export const getAllByPeriod = async (startPeriod, endPeriod) => {
+    const startPeriodDate = new Date(startPeriod);  
+    const endPeriodDate = new Date(endPeriod);
+    const startDate = new Date(startPeriodDate.getFullYear(), startPeriodDate.getMonth(), startPeriodDate.getDate(), 0, 0, 0);
+    const endDate = new Date(endPeriodDate.getFullYear(), endPeriodDate.getMonth(), endPeriodDate.getDate(), 23, 59, 59); 
+    let dislocations = await DislocationRepository.find(
+        {
+            where: {
+                date: Between(startDate, endDate)
+            },
+            relations: {
+                organisation: true,
+            },
+        }
+    ); 
+
+    let dislocationsDto: any[] = [];
+    dislocations.map(async (dislocation) => {
+        dislocationsDto.push(
+            {
+                ...dislocation,
+                organisation: dislocation.organisation.name,
+            }
+        )
+    })
+    return dislocationsDto;
+}
+
 export const add = async (dislocation) => {
     let newDislocation = new Dislocation();
     let organisation = await OrganisationRepository.findOneBy({ name: dislocation.organisation });

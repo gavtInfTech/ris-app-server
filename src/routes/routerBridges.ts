@@ -9,3 +9,4 @@ routerBridges.post("/add", verify("operator"), BridgeController.add);
 routerBridges.post("/change", verify("operator"), BridgeController.change);
 routerBridges.delete("/delete/:id", verify("operator"), BridgeController.deleteById);
 routerBridges.get("/getAllByDate", BridgeController.getAllByDate);
+routerBridges.get("/getAllByPeriod", BridgeController.getAllByPeriod);

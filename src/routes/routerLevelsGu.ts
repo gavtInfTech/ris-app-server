@@ -10,3 +10,4 @@ routerLevelsGu.post("/add", verify("operator"), LevelsGuController.add);
 routerLevelsGu.post("/change", verify("operator"), LevelsGuController.change);
 routerLevelsGu.delete("/delete/:id", verify("operator"), LevelsGuController.deleteById);
 routerLevelsGu.get("/getAllByDate", LevelsGuController.getAllByDate);
+routerLevelsGu.get("/getAllByPeriod", LevelsGuController.getAllByPeriod);

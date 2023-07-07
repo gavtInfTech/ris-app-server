@@ -97,6 +97,34 @@ export const getAllByDate = async (date) => {
     return levelsDto;
 }
 
+export const getAllByPeriod = async (startPeriod, endPeriod) => {
+    const startPeriodDate = new Date(startPeriod);  
+    const endPeriodDate = new Date(endPeriod);
+    const startDate = new Date(startPeriodDate.getFullYear(), startPeriodDate.getMonth(), startPeriodDate.getDate(), 0, 0, 0);
+    const endDate = new Date(endPeriodDate.getFullYear(), endPeriodDate.getMonth(), endPeriodDate.getDate(), 23, 59, 59);
+    let levels = await LevelsGuRepository.find(
+        {
+            where: {
+                date: Between(startDate, endDate)
+            },
+            relations: {
+                river: true
+            }
+        }
+    ); 
+
+    let levelsDto: any = [];
+    levels.map((level) => {
+        levelsDto.push(
+            {
+                ...level,
+                river: level.river.name
+            }
+        )
+    })
+    return levelsDto;
+}
+
   export const add = async (level) => {
     let newLevel = new LevelGu();
     const currentDate = new Date(level.date);  

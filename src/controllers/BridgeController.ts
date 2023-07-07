@@ -23,6 +23,11 @@ export const getAllByDate = async (req, res) => {
     return res.send(bridges);
 }
 
+export const getAllByPeriod = async (req, res) => {
+    let bridges = await BridgeGabService.getAllByPeriod(req.query.startPeriod, req.query.endPeriod);
+    return res.send(bridges);
+}
+
 export const getAllByBridge = async (req, res) => {
     let bridges = await BridgeGabService.getAllByBridge(req.query.bridge);
     return res.send(bridges);

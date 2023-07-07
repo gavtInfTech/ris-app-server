@@ -9,3 +9,4 @@ routerDislocation.post("/add", verify("operator"), DislocationController.add);
 routerDislocation.post("/change", verify("operator"), DislocationController.change);
 routerDislocation.delete("/delete/:id", verify("operator"), DislocationController.deleteById);
 routerDislocation.get("/getAllByDate", DislocationController.getAllByDate);
+routerDislocation.get("/getAllByPeriod", DislocationController.getAllByPeriod);

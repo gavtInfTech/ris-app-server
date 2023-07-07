@@ -25,6 +25,11 @@ export const getAllByDate = async (req, res) => {
     return res.send(notices);
 }
 
+export const getAllByPeriod = async (req, res) => {
+    let notices = await NoticeService.getAllByPeriod(req.query.startPeriod, req.query.endPeriod);
+    return res.send(notices);
+}
+
 // export const getAllBySite = async (req, res) => {
 //     let notices = await NoticeService.getAllBySite(req.query.site);
 //     return res.send(notices);

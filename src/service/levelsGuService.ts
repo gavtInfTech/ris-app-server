@@ -26,6 +26,7 @@ export const getAll = async () => {
   };
 
   export const getAllByHydronode = async (hydronode) => {
+
     let levels = await LevelsGuRepository.find(
         {
             where: {
@@ -45,10 +46,13 @@ export const getAll = async () => {
             }
         )
     })
+
     return levelsDto;
 }
 
 export const getLastLevels = async () => {
+
+    let rows = hydronodesData;
 
     let levels = await LevelsGuRepository.find(
         {
@@ -67,7 +71,20 @@ export const getLastLevels = async () => {
             }
         )
     })
-    return levelsDto;
+
+    rows = rows.map((row) => {
+        let rowData = levelsDto.filter((dat) => (dat.hydronode === row.hydronode));
+        if (rowData.length === 0) return row;
+        let lastRecord = rowData[0];
+        rowData.forEach((dat) => { if (dat.date.getTime() > lastRecord.date.getTime()) lastRecord = dat; })
+        row.level1 = lastRecord.level1;
+        row.level2 = lastRecord.level2;
+        row.date = lastRecord.date.toLocaleString().slice(0, 10);
+        row.river = lastRecord.river;
+        return row;
+      })
+
+    return rows;
 }
 
 export const getAllByDate = async (date) => {

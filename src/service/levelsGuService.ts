@@ -179,7 +179,6 @@ export const change = async (level) => {
         river: river,
         date: new Date(level.date)
     };
-    await LevelsGuRepository.delete( { id: level.id } ); 
     return LevelsGuRepository.save(levelGu);
 }
 

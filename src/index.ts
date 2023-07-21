@@ -4,6 +4,7 @@ import cors from 'cors';
 import { AppDataSource } from "./data-source"
 import cookieParser from "cookie-parser";
 import {routerAuth} from "./routes/routerAuth";
+import {routerClients} from "./routes/routerClients"
 import {routerLevelsGp} from "./routes/routerLevelsGp"
 import {routerLevelsGu} from "./routes/routerLevelsGu"
 import {routerGabs} from "./routes/routerGabs"
@@ -31,6 +32,7 @@ const startServer = async () => {
       app.use(cookieParser());
   
       app.use("/api/auth", routerAuth);
+      app.use("/api/client", routerClients);
       app.use("/api/levelsGp", routerLevelsGp);
       app.use("/api/levelsGu", routerLevelsGu);
       app.use("/api/gabs", routerGabs);

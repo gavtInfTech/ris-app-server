@@ -9,6 +9,7 @@ export const verify = (role) => {
                 if (err) return res.status(403).send("Токен не валиден!");
                  
                 if ((role === "admin" && data.role === "Администратор") ||
+                    (role === "client" && (data.role === "Администратор" || data.role === "Клиент")) ||
                     (role === "operator" && data.role === "Администратор") ||
                     (role === "operator" && data.role === "Оператор")) {
                         req.user = data;

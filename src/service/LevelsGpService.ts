@@ -142,7 +142,6 @@ export const change = async (level) => {
         river: river,
         date: new Date(level.date)
     }
-    await LevelGpRepository.delete( { id: level.id }); 
     return LevelGpRepository.save(levelGp);
 }
 

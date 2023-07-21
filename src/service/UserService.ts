@@ -1,6 +1,7 @@
 import { User } from "../entities/User"
 import { Organisation } from "../entities/Organisation"
 import { AppDataSource } from "../data-source"
+import CryptoJS from "crypto-js";
 
 const UserRepository = AppDataSource.getRepository(User)
 const OrganisationRepository = AppDataSource.getRepository(Organisation)
@@ -22,7 +23,8 @@ export const findAll =  async () => {
             {
                 id: user.id,
                 username: user.username,
-                organisation: user.organisation.name
+                organisation: user.organisation.name,
+                password: CryptoJS.AES.decrypt(user.password, "jhfycghdbndhfjhweiru").toString(CryptoJS.enc.Utf8),
             }
         )
     })
@@ -47,11 +49,13 @@ export const deleteById = (id) => {
 }
 
 export const save = async (regUser) => {
+    console.log(CryptoJS.AES.encrypt(regUser.password, "jhfycghdbndhfjhweiru").toString())
     let organisation = await OrganisationRepository.findOneBy({ name: regUser.organisation });
     let user = new User();
     user = {
         ...regUser,
-        organisation: organisation
+        organisation: organisation,
+        password: CryptoJS.AES.encrypt(regUser.password, "jhfycghdbndhfjhweiru").toString(),
     }
     return UserRepository.save(user); 
 }

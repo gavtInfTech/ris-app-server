@@ -1,24 +1,6 @@
 export const hydronodesData = [
     {
         id: 1,
-        hydronode: 'Судоходный г/у №12 Стахово',
-        river: 'Припять',
-        date: '—',
-        level1: '—',
-        level2: '—',
-        coords: [52.081124, 26.721849]
-    },
-    {
-        id: 2,
-        hydronode: 'Судоходный г/у №11 Качановичи',
-        river: 'Припять',
-        date: '—',
-        level1: '—',
-        level2: '—',
-        coords: [52.10919110102027, 26.430443389344035]
-    },
-    {
-        id: 3,
         hydronode: 'Судоходный г/у №1 Дубой',
         river: 'Пина',
         date: '—',
@@ -27,7 +9,7 @@ export const hydronodesData = [
         coords: [52.030243601873785, 26.862916982540725]
     },
     {
-        id: 4,
+        id: 2,
         hydronode: 'Судоходный г/у №2 Переруб',
         river: 'ДБК',
         date: '—',
@@ -36,7 +18,7 @@ export const hydronodesData = [
         coords: [52.04220084259053, 25.612716468384168]
     }, 
     {
-        id: 5,
+        id: 3,
         hydronode: 'Судоходный г/у №3 Рагодощ',
         river: 'ДБК',
         date: '—',
@@ -45,7 +27,7 @@ export const hydronodesData = [
         coords: [52.04003042179492, 25.470069309535344]
     },
     {
-        id: 6,
+        id: 4,
         hydronode: 'Судоходный г/у №4 Овзичи',
         river: 'ДБК',
         date: '—',
@@ -54,16 +36,16 @@ export const hydronodesData = [
         coords: [52.050676732045346, 25.314461061532615]
     },
     {
-        id: 7,
+        id: 5,
         hydronode: 'Судоходный г/у №5 Ляховичи',
         river: 'ДБК',
         date: '—',
         level1: '—',
         level2: '—',
-        coords: [53.038887342021184, 26.259713761562068]
+        coords: [52.033333, 25.15]
     },
     {
-        id: 8,
+        id: 6,
         hydronode: 'Судоходный г/у Кобрин',
         river: 'ДБК',
         date: '—',
@@ -72,7 +54,7 @@ export const hydronodesData = [
         coords: [52.209271637978304, 24.351166233394263 ]
     },
     {
-        id: 9,
+        id: 7,
         hydronode: 'Судоходный г/у №8 Залузье',
         river: 'Мухавец',
         date: '—',
@@ -81,7 +63,7 @@ export const hydronodesData = [
         coords: [52.198701612705555, 24.146316930207266]
     },
     {
-        id: 10,
+        id: 8,
         hydronode: 'Судоходный г/у №9 Новосады',
         river: 'Мухавец',
         date: '—',
@@ -90,13 +72,31 @@ export const hydronodesData = [
         coords: [52.141043, 23.953105]
     },
     {
-        id: 11,
+        id: 9,
         hydronode: 'Судоходный г/у №10 Тришин',
         river: 'Мухавец',
         date: '—',
         level1: '—',
         level2: '—',
         coords: [52.09111783368861, 23.741324972020646]
+    },
+    {
+        id: 10,
+        hydronode: 'Судоходный г/у №11 Качановичи',
+        river: 'Припять',
+        date: '—',
+        level1: '—',
+        level2: '—',
+        coords: [52.10919110102027, 26.430443389344035]
+    },
+    {
+        id: 11,
+        hydronode: 'Судоходный г/у №12 Стахово',
+        river: 'Припять',
+        date: '—',
+        level1: '—',
+        level2: '—',
+        coords: [52.081124, 26.721849]
     },
     {
         id: 12,

@@ -13,6 +13,8 @@ import {routerDislocation} from "./routes/routerDislocation"
 import {routerNotices} from "./routes/routerNotices"
 import {routerSib} from "./routes/routerSib"
 const http = require('http');
+const https = require('https');
+const fs = require('fs');
 
 const startServer = async () => {
     try {
@@ -26,7 +28,7 @@ const startServer = async () => {
       const app = express();
       app.use(express.json());
       app.use(cors({
-        origin: ['http://localhost:3000', 'http://192.168.1.67:3000'],
+        origin: ['http://localhost:3000', 'http://192.168.1.67:3000', 'https://178.124.171.122', 'https://rias.by'],
         credentials: true,
       }));
       app.use(cookieParser());
@@ -51,12 +53,19 @@ const startServer = async () => {
         
       // });
 
+     
+
       app.use(express.static(path.join('C:/Users/Администратор/RIAS/ris-app-client/build')));
       app.get('*', (req, res) => {
         res.sendFile(path.join('C:/Users/Администратор/RIAS/ris-app-client/build/index.html'));
       });
 
-      const server = http.createServer(app).listen(80, '192.168.100.3', () => {
+      const options = {
+        key: fs.readFileSync('privkey.pem'),
+        cert: fs.readFileSync('cert.pem'),
+      };
+
+      const server = https.createServer(options, app).listen(443, '192.168.100.3', () => {
         console.log("Connected!");
         
       });

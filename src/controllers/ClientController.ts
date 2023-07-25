@@ -15,8 +15,8 @@ export const deleteClient= async (req, res) => {
   return res.end();
 };
 
-export const findAllClients = async (req, res) => {
-  let users = await ClientService.findAll();
+export const getAllClients = async (req, res) => {
+  let users = await ClientService.getAll();
   return res.send(users);
 };
 

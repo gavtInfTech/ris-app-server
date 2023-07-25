@@ -4,7 +4,7 @@ import CryptoJS from "crypto-js";
 
 const ClientRepository = AppDataSource.getRepository(Client);
 
-export const findAll = async () => {
+export const getAll = async () => {
   let clients = await ClientRepository.find();
   let clientsDto: any[] = [];
   clients.map((client) => {

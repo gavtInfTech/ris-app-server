@@ -34,7 +34,7 @@ const startServer = async () => {
       app.use(cookieParser());
   
       app.use("/api/auth", routerAuth);
-      app.use("/api/client", routerClients);
+      app.use("/api/clients", routerClients);
       app.use("/api/levelsGp", routerLevelsGp);
       app.use("/api/levelsGu", routerLevelsGu);
       app.use("/api/gabs", routerGabs);

@@ -6,8 +6,8 @@ export class Notice {
     @PrimaryColumn()
     id: string
 
-    @Column()
-    content: string
+    @Column("varchar", { length: 1000 })
+    content
 
     @Column()
     date: Date

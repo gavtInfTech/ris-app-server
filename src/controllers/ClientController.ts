@@ -10,9 +10,15 @@ export const registration = async (req, res) => {
   }
 };
 
-export const deleteClient= async (req, res) => {
-  await ClientService.deleteById(req.params.id);
-  return res.end();
+export const deleteClient = async (req, res) => {
+  if (req.user.id === req.params.id || req.user.role === "Администратор") {
+    await ClientService.deleteById(req.params.id);
+    return res.end();
+  } else {
+    return res
+      .status(401)
+      .send("У пользователя нет прав на соверешение операции!");
+  }
 };
 
 export const getAllClients = async (req, res) => {
@@ -21,6 +27,14 @@ export const getAllClients = async (req, res) => {
 };
 
 export const change = async (req, res) => {
-  await ClientService.change(req.body);
-  return res.send("Клиент успешно изменен!")
-}
+  console.log(req.user);
+  if (req.user.id === req.body.id || req.user.role === "Администратор") {
+    await ClientService.change(req.body);
+    return res.end();
+
+  } else {
+    return res
+    .status(401)
+    .send("У пользователя нет прав на соверешение операции!");
+  }
+};

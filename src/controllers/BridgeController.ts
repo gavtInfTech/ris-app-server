@@ -32,3 +32,8 @@ export const getAllByBridge = async (req, res) => {
     let bridges = await BridgeGabService.getAllByBridge(req.query.bridge);
     return res.send(bridges);
 }
+
+export const getLast = async (req, res) => {
+    let bridges = await BridgeGabService.getLastBridgeGabs();
+    return res.send(bridges);
+}

@@ -21,9 +21,6 @@ const startServer = async () => {
       await AppDataSource.initialize().then(() => {
         console.log("Data Source has been initialized!")
     })
-    .catch((err) => {
-        console.error("Error during Data Source initialization:", err)
-    })
   
       const app = express();
       app.use(express.json());
@@ -72,7 +69,7 @@ const startServer = async () => {
 
       return server; 
     } catch (err) {
-      console.error("Error during Data Source initialization:", err);
+      console.error("Error during Server initialization:", err);
     }
   };
 

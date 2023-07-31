@@ -6,5 +6,5 @@ export const routerClients = express.Router();
  
 routerClients.post("/registrationClient", ClientController.registration);
 routerClients.get("/getAll", verify("admin"), ClientController.getAllClients);
-routerClients.delete("/delete/:id", verify("admin"), ClientController.deleteClient);
+routerClients.delete("/delete/:id", verify("client"), ClientController.deleteClient);
 routerClients.post("/change", verify("client"), ClientController.change);

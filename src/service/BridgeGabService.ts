@@ -2,7 +2,7 @@ import { BridgeGab } from "../entities/BridgeGab"
 import { River } from "../entities/River"
 import { AppDataSource } from "../data-source"
 import { Between } from 'typeorm';
-import moment from 'moment-timezone';
+import { bridgeGabsData } from './bridgeGabsData'
 
 const BridgeRepository = AppDataSource.getRepository(BridgeGab)
 const RiverRepository = AppDataSource.getRepository(River)
@@ -145,4 +145,39 @@ export const getAllByPeriod = async (startPeriod, endPeriod) => {
         )
     })
     return bridgesDto;
+}
+
+export const getLastBridgeGabs = async () => {
+
+    let bridgeGabs = bridgeGabsData;
+
+    let bridges = await BridgeRepository.find(
+        {
+            relations: {
+                river: true,
+            }
+        }
+    ); 
+
+    let bridgesDto: any = [];
+    bridges.map((bridge) => {
+        bridgesDto.push(
+            {
+                ...bridge,
+                river: bridge.river.name
+            }
+        )
+    })
+
+    bridgeGabs = bridgeGabs.map((gab) => {
+        let bridges = bridgesDto.filter((item) => (item.bridge === gab.bridge));
+        if (bridges.length === 0) return gab;
+        let lastRecord = bridges[0];
+        bridges.forEach((bridge) => { if (bridge.date.getTime() > lastRecord.date.getTime()) lastRecord = bridge; })
+        gab.height = lastRecord.height;
+        gab.date = lastRecord.date.toLocaleString().slice(0, 10);
+        return gab;
+      })
+
+    return bridgeGabs;
 }

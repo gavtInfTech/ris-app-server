@@ -7,19 +7,18 @@ const NoticeRepository = AppDataSource.getRepository(Notice)
 const SiteRepository = AppDataSource.getRepository(Site)
 
 export const getAll = async () => {
-    // let notices = await NoticeRepository.find({
-    //     relations: [
-    //         'site',
-    //         'site.river'
-    //     ],
-    // });
-    const notices = await NoticeRepository
+    let notices = await NoticeRepository
     .createQueryBuilder('notice')
     .leftJoinAndSelect('notice.site', 'site')
     .leftJoinAndSelect(`site.river`, 'river')
     .getMany();
+
+    notices.sort((a, b) => {
+        return (b.date.getTime() - a.date.getTime())
+    })
+
     let noticesDto: any[] = [];
-    notices.map(async (notice) => {
+    notices.forEach(async (notice) => {
         noticesDto.push(
             {
                 ...notice,
@@ -28,6 +27,7 @@ export const getAll = async () => {
             }
         )
     })
+    
     return noticesDto;
   };
 

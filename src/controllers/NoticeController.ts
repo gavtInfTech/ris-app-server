@@ -48,5 +48,18 @@ export const getCurrentNotices = async (req, res) => {
     );
   } else date = currentDate;
   let notices = await NoticeService.getAllByDate(date);
+  notices.map((notice) => {
+    let cause = "";
+    if (notice.cause1) {
+      cause += "Изменение СНО; ";
+    }
+    if (notice.cause2) {
+      cause += "Метеологические условия; ";
+    }
+    if (notice.cause3) {
+      cause += "Опасно для жизни; ";
+    }
+    return { ...notice, cause: cause };
+  })
   return res.send(notices);
 };

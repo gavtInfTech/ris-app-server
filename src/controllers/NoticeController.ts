@@ -37,7 +37,7 @@ export const getCurrentNotices = async (req, res) => {
   let date;
   const currentDate = new Date();
   const currentHours = currentDate.getHours();
-  if (currentHours < 12) {
+  if (currentHours < 11) {
     date = new Date(
       currentDate.getFullYear(),
       currentDate.getMonth(),
@@ -48,7 +48,7 @@ export const getCurrentNotices = async (req, res) => {
     );
   } else date = currentDate;
   let notices = await NoticeService.getAllByDate(date);
-  notices.map((notice) => {
+  notices = notices.map((notice) => {
     let cause = "";
     if (notice.cause1) {
       cause += "Изменение СНО; ";

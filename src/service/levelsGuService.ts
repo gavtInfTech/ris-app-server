@@ -150,7 +150,7 @@ export const getAllByPeriod = async (startPeriod, endPeriod) => {
     const river = await RiverRepository.findOneBy({ name: level.river });
 
     if (river === null) return;
-    let levelsExist = await LevelsGuRepository.find(
+    let levelsExist = await LevelsGuRepository.findOne(
         {
             where: {
                 date: Between(startDate, endDate),
@@ -159,7 +159,7 @@ export const getAllByPeriod = async (startPeriod, endPeriod) => {
         }
     ); 
         
-    if (levelsExist.length > 0) {
+    if (levelsExist) {
         return undefined;
     }
 

@@ -16,6 +16,12 @@ export class LevelGu {
     level2: string
 
     @Column()
+    level1Change: string
+
+    @Column()
+    level2Change: string
+
+    @Column()
     date: Date
 
     @ManyToOne(type => River)

@@ -6,7 +6,8 @@ export const routerAuth = express.Router();
  
 routerAuth.post("/login", UserController.login);
 routerAuth.post("/registration", verify("admin"), UserController.registration);
-routerAuth.get("/users", verify("admin"), UserController.findAllUsers);
+routerAuth.get("/getAllUsers", verify("admin"), UserController.getAllUsers);
 routerAuth.delete("/delete/:id", verify("admin"), UserController.deleteUser);
+routerAuth.delete("/change/:id", verify("admin"), UserController.changeUser);
 routerAuth.get("/authCheck", UserController.authCheck);
 routerAuth.get("/logout", UserController.logout);

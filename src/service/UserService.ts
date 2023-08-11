@@ -65,6 +65,7 @@ export const change = async (userUpdated) => {
     user = {
         ...userUpdated,
         organisation: organisation,
+        role: 'Оператор',
         password: CryptoJS.AES.encrypt(userUpdated.password, "jhfycghdbndhfjhweiru").toString(),
     };
     return UserRepository.save(user);

@@ -82,6 +82,7 @@ export const deleteUser = async (req, res) => {
 };
 
 export const changeUser = async (req, res) => {
+  console.log(req);
     await UserService.change(req.body);
     return res.end();
 };

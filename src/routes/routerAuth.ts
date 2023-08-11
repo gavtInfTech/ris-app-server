@@ -8,6 +8,6 @@ routerAuth.post("/login", UserController.login);
 routerAuth.post("/registration", verify("admin"), UserController.registration);
 routerAuth.get("/getAllUsers", verify("admin"), UserController.getAllUsers);
 routerAuth.delete("/delete/:id", verify("admin"), UserController.deleteUser);
-routerAuth.delete("/change/:id", verify("admin"), UserController.changeUser);
+routerAuth.post("/change", verify("admin"), UserController.changeUser);
 routerAuth.get("/authCheck", UserController.authCheck);
 routerAuth.get("/logout", UserController.logout);

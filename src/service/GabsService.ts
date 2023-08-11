@@ -113,12 +113,6 @@ export const add = async (gab) => {
     const startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 0, 0, 0);
     const endDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 23, 59, 59); 
     let site = await SiteRepository.findOneBy({ name: gab.site });
-   console.log(gab.site);
-    console.log(gab.site);
-    console.log(gab.site);
-    console.log(gab.site);
-    console.log(gab.site);
-    console.log(gab.site);
     if (site === null) return;
 
     const GabsExist = await GabRepository.createQueryBuilder('gab')

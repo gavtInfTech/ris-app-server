@@ -54,18 +54,19 @@ export const save = async (regUser) => {
     user = {
         ...regUser,
         organisation: organisation,
+        role: 'Оператор',
         password: CryptoJS.AES.encrypt(regUser.password, "jhfycghdbndhfjhweiru").toString(),
     }
     return UserRepository.save(user); 
 }
 
 export const change = async (userUpdated) => {
+    console.log(userUpdated);
     let organisation = await OrganisationRepository.findOneBy({ name: userUpdated.organisation });
     let user = new User();
     user = {
         ...userUpdated,
         organisation: organisation,
-        role: 'Оператор',
         password: CryptoJS.AES.encrypt(userUpdated.password, "jhfycghdbndhfjhweiru").toString(),
     };
     return UserRepository.save(user);

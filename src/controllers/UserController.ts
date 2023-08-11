@@ -4,9 +4,6 @@ import CryptoJS from "crypto-js";
 import * as jwt from "jsonwebtoken";
 
 export const registration = async (req, res) => {
-  if (req.body.password !== req.body.repeatPassword) {
-    return res.status(404).send("Пароли не совпадают!");
-  }
   if (await UserService.findByUsername(req.body.username)) {
     return res.status(409).send("Пользователь уже существует!");
   } else {
@@ -43,7 +40,6 @@ export const login = async (req, res) => {
   }
 
   let client = await ClientService.findByEmail(req.body.username);
-  console.log(client);
   if (client) {
     let isPasswordCorrect =
       req.body.password ===
@@ -85,8 +81,13 @@ export const deleteUser = async (req, res) => {
   return res.end();
 };
 
-export const findAllUsers = async (req, res) => {
-  let users = await UserService.findAll();
+export const changeUser = async (req, res) => {
+    await UserService.change(req.body);
+    return res.end();
+};
+
+export const getAllUsers = async (req, res) => {
+  let users = await UserService.getAll();
   return res.send(users);
 };
 

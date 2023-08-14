@@ -79,6 +79,8 @@ export const getLastLevels = async () => {
         rowData.forEach((dat) => { if (dat.date.getTime() > lastRecord.date.getTime()) lastRecord = dat; })
         row.level1 = lastRecord.level1;
         row.level2 = lastRecord.level2;
+        row.level1Change = lastRecord.level1Change;
+        row.level2Change = lastRecord.level2Change;
         row.date = lastRecord.date.toLocaleString().slice(0, 10);
         row.river = lastRecord.river;
         return row;

@@ -52,7 +52,7 @@ export const getAll = async () => {
 
 export const getLastLevels = async () => {
 
-    let rows = hydronodesData;
+    let rows = [...hydronodesData];
 
     let levels = await LevelsGuRepository.find(
         {

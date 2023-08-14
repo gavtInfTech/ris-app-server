@@ -6,6 +6,8 @@ export const hydronodesData = [
         date: '—',
         level1: '—',
         level2: '—',
+        level1Change: '—',
+        level2Change: '—',
         coords: [52.079142, 25.774201]
     },
     {
@@ -15,6 +17,8 @@ export const hydronodesData = [
         date: '—',
         level1: '—',
         level2: '—',
+        level1Change: '—',
+        level2Change: '—',
         coords: [52.035181, 25.618088]
     }, 
     {
@@ -24,6 +28,8 @@ export const hydronodesData = [
         date: '—',
         level1: '—',
         level2: '—',
+        level1Change: '—',
+        level2Change: '—',
         coords: [52.023500, 25.472534]
     },
     {
@@ -33,6 +39,8 @@ export const hydronodesData = [
         date: '—',
         level1: '—',
         level2: '—',
+        level1Change: '—',
+        level2Change: '—',
         coords: [52.022081, 25.328837]
     },
     {
@@ -42,6 +50,8 @@ export const hydronodesData = [
         date: '—',
         level1: '—',
         level2: '—',
+        level1Change: '—',
+        level2Change: '—',
         coords: [52.036990, 25.163390]
     },
     {
@@ -51,6 +61,8 @@ export const hydronodesData = [
         date: '—',
         level1: '—',
         level2: '—',
+        level1Change: '—',
+        level2Change: '—',
         coords: [52.212479, 24.399268]
     },
     {
@@ -60,6 +72,8 @@ export const hydronodesData = [
         date: '—',
         level1: '—',
         level2: '—',
+        level1Change: '—',
+        level2Change: '—',
         coords: [52.191919, 24.128263]
     },
     {
@@ -69,6 +83,8 @@ export const hydronodesData = [
         date: '—',
         level1: '—',
         level2: '—',
+        level1Change: '—',
+        level2Change: '—',
         coords: [52.141047, 23.953104]
     },
     {
@@ -78,6 +94,8 @@ export const hydronodesData = [
         date: '—',
         level1: '—',
         level2: '—',
+        level1Change: '—',
+        level2Change: '—',
         coords: [52.088838, 23.743320]
     },
     {
@@ -87,6 +105,8 @@ export const hydronodesData = [
         date: '—',
         level1: '—',
         level2: '—',
+        level1Change: '—',
+        level2Change: '—',
         coords: [52.116139, 26.429919]
     },
     {
@@ -96,6 +116,8 @@ export const hydronodesData = [
         date: '—',
         level1: '—',
         level2: '—',
+        level1Change: '—',
+        level2Change: '—',
         coords: [52.114592, 26.736549]
     },
     {
@@ -105,6 +127,8 @@ export const hydronodesData = [
         date: '—',
         level1: '—',
         level2: '—',
+        level1Change: '—',
+        level2Change: '—',
         coords: [52.083828006110416, 23.663883865425976]
     },
     {
@@ -114,6 +138,8 @@ export const hydronodesData = [
         date: '—',
         level1: '—',
         level2: '—',
+        level1Change: '—',
+        level2Change: '—',
         coords: [55.249773, 30.160869]
     },
     {
@@ -123,6 +149,8 @@ export const hydronodesData = [
         date: '—',
         level1: '—',
         level2: '—',
+        level1Change: '—',
+        level2Change: '—',
         coords: [53.645261, 23.973409]
     },
     {
@@ -132,6 +160,8 @@ export const hydronodesData = [
         date: '—',
         level1: '—',
         level2: '—',
+        level1Change: '—',
+        level2Change: '—',
         coords: [53.860340, 23.528939]
     },
     {
@@ -141,6 +171,8 @@ export const hydronodesData = [
         date: '—',
         level1: '—',
         level2: '—',
+        level1Change: '—',
+        level2Change: '—',
         coords: [53.859118, 23.549525]
     },
     {
@@ -150,6 +182,8 @@ export const hydronodesData = [
         date: '—',
         level1: '—',
         level2: '—',
+        level1Change: '—',
+        level2Change: '—',
         coords: [53.862782, 23.624258]
     },
     {
@@ -159,6 +193,8 @@ export const hydronodesData = [
         date: '—',
         level1: '—',
         level2: '—',
+        level1Change: '—',
+        level2Change: '—',
         coords: [53.861766, 23.748762]
     },
 

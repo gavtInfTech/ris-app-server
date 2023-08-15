@@ -2,6 +2,7 @@ import { User } from "../entities/User"
 import { Organisation } from "../entities/Organisation"
 import { AppDataSource } from "../data-source"
 import CryptoJS from "crypto-js";
+import { In } from "typeorm";
 
 const UserRepository = AppDataSource.getRepository(User)
 const OrganisationRepository = AppDataSource.getRepository(Organisation)
@@ -10,7 +11,7 @@ export const getAll =  async () => {
     let users = await UserRepository.find(
         {
             where: {
-                role: "Оператор",
+                role: In(['Оператор', 'Путевик']),
             },
             relations: {
                 organisation: true,

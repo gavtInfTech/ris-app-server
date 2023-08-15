@@ -21,8 +21,7 @@ export const getAll =  async () => {
     users.map((user) => {
         usersDto.push(
             {
-                id: user.id,
-                username: user.username,
+                ...user,
                 organisation: user.organisation.name,
                 password: CryptoJS.AES.decrypt(user.password, "jhfycghdbndhfjhweiru").toString(CryptoJS.enc.Utf8),
             }
@@ -54,7 +53,6 @@ export const save = async (regUser) => {
     user = {
         ...regUser,
         organisation: organisation,
-        role: 'Оператор',
         password: CryptoJS.AES.encrypt(regUser.password, "jhfycghdbndhfjhweiru").toString(),
     }
     return UserRepository.save(user); 

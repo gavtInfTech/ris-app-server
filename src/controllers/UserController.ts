@@ -98,7 +98,7 @@ export const authCheck = async (req, res) => {
     jwt.verify(token, "rissecretkey", (err, data) => {
       if (err) return res.status(403).send("Токен не валиден!");
 
-      if (data.role === "Администратор" || data.role === "Оператор")
+      if (data.role === "Администратор" || data.role === "Оператор" || data.role === "Путевик")
         return res.send({ role: data.role, organisation: data.organisation });
       else if (data.role === "Клиент")
         return res.send({ id: data.id, role: data.role });

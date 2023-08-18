@@ -24,7 +24,7 @@ export const getAll = async () => {
 
 export const change = async (sign) => {
   let updatedSign = new Sign();
-  const river = await RiverRepository.findOneBy({ name: sign.organisation });
+  const river = await RiverRepository.findOneBy({ name: sign.river });
   updatedSign = {
     ...sign,
     river: river,
@@ -15353,8 +15353,7 @@ export const save = async () => {
       description: "Перевальный знак левый 93",
     },
   ];
-  let river = new River();
-  river.id = "1";
+  let river = RiverRepository.findOneBy({ id: '1' });
   signs.forEach(async (sign) => {
     let signsDto = [];
     signsDto.push({

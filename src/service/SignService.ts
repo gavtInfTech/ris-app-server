@@ -15355,7 +15355,7 @@ export const save = async () => {
   ];
 
   let river = new River();
-  river.id = '1';
+  river = await RiverRepository.findOneBy({ id: '1' });
   signs.forEach(async (sign) => {
     let signObj = new Sign();
     signObj = {

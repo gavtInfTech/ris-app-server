@@ -15353,13 +15353,15 @@ export const save = async () => {
       description: "Перевальный знак левый 93",
     },
   ];
-  let river = RiverRepository.findOneBy({ id: '1' });
+
+  let river = new River();
+  river.id = '1';
   signs.forEach(async (sign) => {
-    let signsDto = [];
-    signsDto.push({
+    let signObj = new Sign();
+    signObj = {
       ...sign,
       river: river,
-    });
-    await SignRepository.save(signsDto);
+    };
+    await SignRepository.save(signObj);
   });
 };

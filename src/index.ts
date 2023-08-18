@@ -12,6 +12,7 @@ import {routerBridges} from "./routes/routerBridges"
 import {routerDislocation} from "./routes/routerDislocation"
 import {routerNotices} from "./routes/routerNotices"
 import {routerSib} from "./routes/routerSib"
+import * as SignService from "./service/SignService";
 const http = require('http');
 const https = require('https');
 const fs = require('fs');
@@ -39,7 +40,7 @@ const startServer = async () => {
       app.use("/api/dislocation", routerDislocation);
       app.use("/api/notices", routerNotices);
       app.use("/api/sib", routerSib);
-  
+      SignService.save();
      // app.use(express.static(path.join('C:/Users/Ivan/ris-app/client/build')));
       // app.get('*', (req, res) => {
       //   res.sendFile(path.join('C:/Users/Ivan/ris-app/client/build/index.html'));

@@ -10,6 +10,15 @@ export class Site {
     @Column()
     name: string
 
+    @Column()
+    accordance: boolean
+
+    @Column('double precision')
+    firstKM: number
+
+    @Column('double precision')
+    secondKM: number
+    
     @ManyToOne(() => River)
     river: River;
 }

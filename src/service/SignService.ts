@@ -48,3 +48,17 @@ export const save = async () => {
     await SignRepository.save(signObj);
   });
 };
+
+
+export const deleteByRiver = async (riverId: string) => {
+ 
+
+  try {
+    let river = new River();
+    river.id = riverId;
+    const signsToDelete = await SignRepository.find({ where: { river } });
+    await SignRepository.remove(signsToDelete);
+  } catch (error) {
+    console.error("Error deleting signs:", error);
+  }
+};

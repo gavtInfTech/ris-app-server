@@ -42,8 +42,7 @@ const startServer = async () => {
       app.use("/api/notices", routerNotices);
       app.use("/api/sib", routerSib);
       app.use("/api/signs", routerSigns);
-      SignService.deleteByRiver('12');
-      SignService.deleteByRiver('4');
+
       app.use(express.static(path.join('C:/Users/Администратор/RIAS/ris-app-client/build')));
       app.get('*', (req, res) => {
         res.sendFile(path.join('C:/Users/Администратор/RIAS/ris-app-client/build/index.html'));

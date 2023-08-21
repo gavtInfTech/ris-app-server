@@ -41,7 +41,7 @@ const startServer = async () => {
       app.use("/api/dislocation", routerDislocation);
       app.use("/api/notices", routerNotices);
       app.use("/api/sib", routerSib);
-      app.use("/signs", routerSigns);
+      app.use("/api/signs", routerSigns);
      // app.use(express.static(path.join('C:/Users/Ivan/ris-app/client/build')));
       // app.get('*', (req, res) => {
       //   res.sendFile(path.join('C:/Users/Ivan/ris-app/client/build/index.html'));

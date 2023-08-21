@@ -11,7 +11,8 @@ export const verify = (role) => {
                 if ((role === "admin" && data.role === "Администратор") ||
                     (role === "client" && (data.role === "Администратор" || data.role === "Клиент")) ||
                     (role === "operator" && data.role === "Администратор") ||
-                    (role === "operator" && data.role === "Оператор")) {
+                    (role === "operator" && data.role === "Оператор") ||
+                    (role === "Путевик" && data.role === "Путевик")) {
                         req.user = data;
                         next();
                     } else {

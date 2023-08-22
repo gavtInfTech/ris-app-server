@@ -1,18 +1,19 @@
 import express from "express"; 
 import path from "path";
 import cors from 'cors';
-import { AppDataSource } from "./data-source"
+import { AppDataSource } from "./data-source";
 import cookieParser from "cookie-parser";
 import {routerAuth} from "./routes/routerAuth";
-import {routerClients} from "./routes/routerClients"
-import {routerLevelsGp} from "./routes/routerLevelsGp"
-import {routerLevelsGu} from "./routes/routerLevelsGu"
-import {routerGabs} from "./routes/routerGabs"
-import {routerBridges} from "./routes/routerBridges"
-import {routerDislocation} from "./routes/routerDislocation"
-import {routerNotices} from "./routes/routerNotices"
-import {routerSib} from "./routes/routerSib"
-import {routerSigns} from "./routes/routerSigns"
+import {routerClients} from "./routes/routerClients";
+import {routerLevelsGp} from "./routes/routerLevelsGp";
+import {routerLevelsGu} from "./routes/routerLevelsGu";
+import {routerGabs} from "./routes/routerGabs";
+import {routerBridges} from "./routes/routerBridges";
+import {routerDislocation} from "./routes/routerDislocation";
+import {routerNotices} from "./routes/routerNotices";
+import {routerSib} from "./routes/routerSib";
+import {routerSigns} from "./routes/routerSigns";
+import {routerRifts} from "./routes/routerRifts";
 import * as SignService from "./service/SignService";
 const http = require('http');
 const https = require('https');
@@ -42,6 +43,7 @@ const startServer = async () => {
       app.use("/api/notices", routerNotices);
       app.use("/api/sib", routerSib);
       app.use("/api/signs", routerSigns);
+      app.use("/api/rifts", routerRifts);
 
       app.use(express.static(path.join('C:/Users/Администратор/RIAS/ris-app-client/build')));
       app.get('*', (req, res) => {

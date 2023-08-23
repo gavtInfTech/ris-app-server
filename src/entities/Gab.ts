@@ -7,10 +7,10 @@ export class Gab {
     id: string
 
     @Column()
-    depth: number
+    depth: string
 
     @Column()
-    width: number
+    width: string
 
     @Column({ nullable: true })
     limitedRoll: string
@@ -22,7 +22,7 @@ export class Gab {
     date: Date
     
     @Column({ nullable: true })
-    forecastDepth: number
+    forecastDepth: string
 
     @Column({ nullable: true })
     forecastDate: Date

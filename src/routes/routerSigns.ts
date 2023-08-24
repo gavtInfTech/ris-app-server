@@ -4,4 +4,4 @@ import { verify } from "../middleware/verify"
 
 export const routerSigns = express.Router();
 
-routerSigns.get("/getAll", verify('Путевик'), SignController.getAll);
+routerSigns.get("/getAll", SignController.getAll);

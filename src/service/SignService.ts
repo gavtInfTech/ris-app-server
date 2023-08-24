@@ -31,22 +31,22 @@ export const change = async (sign) => {
   return SignRepository.save(updatedSign);
 };
 
-export const save = async () => {
-  let signs = [
+// export const save = async () => {
+//   let signs = [
     
-  ];
+//   ];
 
-  let river = new River();
-  river.id = '4';
-  signs.forEach(async (sign) => {
-    let signObj = new Sign();
-    signObj = {
-      ...sign,
-      river: river,
-    };
-    await SignRepository.save(signObj);
-  });
-};
+//   let river = new River();
+//   river.id = '4';
+//   signs.forEach(async (sign) => {
+//     let signObj = new Sign();
+//     signObj = {
+//       ...sign,
+//       river: river,
+//     };
+//     await SignRepository.save(signObj);
+//   });
+// };
 
 
 export const deleteByRiver = async (riverId: string) => {

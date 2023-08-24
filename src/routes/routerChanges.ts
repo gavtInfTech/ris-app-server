@@ -1,7 +1,8 @@
 import * as express from "express";
-import * as ChangeController from "../controllers/AlertController";
+import * as ChangeController from "../controllers/ChangeController";
 import { verify } from "../middleware/verify";
 
 export const routerChanges = express.Router();
 
-routerChanges.get("/add", ChangeController.add);
+routerChanges.post("/add", ChangeController.add);
+routerChanges.get("/getBySession", ChangeController.getBySession);

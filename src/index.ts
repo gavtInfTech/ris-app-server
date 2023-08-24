@@ -16,6 +16,8 @@ import {routerSigns} from "./routes/routerSigns";
 import {routerRifts} from "./routes/routerRifts";
 import {routerAlerts} from "./routes/routerAlerts";
 import {routerChanges} from "./routes/routerChanges";
+import {routerSessions} from "./routes/routerSessions";
+import {routerSites} from "./routes/routerSites";
 import * as SignService from "./service/SignService";
 const http = require('http');
 const https = require('https');
@@ -46,8 +48,10 @@ const startServer = async () => {
       app.use("/api/sib", routerSib);
       app.use("/api/signs", routerSigns);
       app.use("/api/rifts", routerRifts);
-      app.use("/api/rifts", routerAlerts);
+      app.use("/api/alerts", routerAlerts);
+      app.use("/api/sessions", routerSessions);
       app.use("/api/changes", routerChanges);
+      app.use("/api/sites", routerSites);
 
       app.use(express.static(path.join('C:/Users/Администратор/RIAS/ris-app-client/build')));
       app.get('*', (req, res) => {

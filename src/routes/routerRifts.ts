@@ -4,4 +4,4 @@ import { verify } from "../middleware/verify"
 
 export const routerRifts = express.Router();
 
-routerRifts.get("/getAll", verify('Путевик'), RiftController.getAll);
+routerRifts.get("/getAll", RiftController.getAll);

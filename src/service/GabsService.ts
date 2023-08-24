@@ -28,12 +28,21 @@ export const getAll = async () => {
     let site = await SiteRepository.findOneBy({ name: siteName });
     
     if (site === null) return;
-    const gabs = await GabRepository
-    .createQueryBuilder('gab')
-    .leftJoinAndSelect('gab.site', 'site')
-    .leftJoinAndSelect(`site.river`, 'river')
-    .where(`site.id = :id`, { id: site.id })
-    .getMany();
+    // const gabs = await GabRepository
+    // .createQueryBuilder('gab')
+    // .leftJoinAndSelect('gab.site', 'site')
+    // .leftJoinAndSelect(`site.river`, 'river')
+    // .where(`site.id = :id`, { id: site.id })
+    // .getMany();
+
+    let gabs = await GabRepository.find({
+        where: { 
+            site: site 
+        },
+        relations: {
+            site: true
+        } 
+    });
 
     let gabsDto: any[] = [];
     gabs.map(async (gab) => {

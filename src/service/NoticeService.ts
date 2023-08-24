@@ -117,22 +117,12 @@ export const getAllByPeriod = async (startPeriod, endPeriod) => {
 
 export const add = async (notice) => {
     let newNotice = new Notice();
-    const site = await SiteRepository.findOne({ 
-        where: {
-            name: notice.site
-        }, 
-
-    });
-
-    if (site === null) return;
-
+    const site = await SiteRepository.findOneBy({ name: notice.site });
     newNotice = {
         ...notice,
         site: site,
         date: new Date(notice.date)
     }
-
-    console.log(newNotice);
     return NoticeRepository.save(newNotice);
 }
 

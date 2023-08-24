@@ -36,12 +36,20 @@ export const getAll = async () => {
         let organisation = await OrganisationRepository.findOneBy({ name: organisationName });
         if (organisation === null) return;
 
-        dislocations = await DislocationRepository
-        .createQueryBuilder('dislocation')
-        .leftJoinAndSelect('dislocation.organisation', 'organisation')
-        .where(`organisation.id = :id`, { id: organisation.id })
-        .getMany();
-        console.log(dislocations)
+        dislocations = await DislocationRepository.find({
+            where: { 
+                organisation: organisation 
+            },
+            relations: {
+                organisation: true
+            } 
+        });
+
+        // dislocations = await DislocationRepository
+        // .createQueryBuilder('dislocation')
+        // .leftJoinAndSelect('dislocation.organisation', 'organisation')
+        // .where(`organisation.id = :id`, { id: organisation.id })
+        // .getMany();
     }
     let dislocationDto: any[] = [];
     dislocations.map(async (dislocation) => {

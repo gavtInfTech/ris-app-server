@@ -52,7 +52,7 @@ export const getAll = async () => {
 
 export const getLastLevels = async () => {
 
-    let rows = [];
+    let rows: any = [];
 
     let levels = await LevelsGuRepository.find(
         {

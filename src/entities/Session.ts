@@ -20,7 +20,10 @@ export class Session {
     inspectior4: string
 
     @Column()
-    time: Date
+    startDate: Date
+
+    @Column()
+    endDate: Date
 
     @ManyToOne(type => User)
     user: User

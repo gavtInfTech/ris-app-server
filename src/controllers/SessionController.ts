@@ -1,8 +1,8 @@
 import * as SessionService from "../service/SessionService";
 
 export const getByMonth = async (req, res) => {
-    let sessions = await SessionService.getByMonth(req.params.month, req.params.river);
-    return res.send(sessions);
+    let session = await SessionService.getByMonth(req.params.month, req.params.river);
+    return res.send(session);
 }
 
 export const add = async (req, res) => {

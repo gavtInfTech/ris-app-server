@@ -31,11 +31,11 @@ export const getByMonth = async (month, river) => {
           },
     })
 
-    let sessionsByMonth = sessions.map((session) => {
-        let date = new Date(session.time);
+    let sessionByMonth = sessions.find((session) => {
+        let date = new Date(session.startDate);
         if (date.getMonth() === month && river.name === river) return session;
     })
-    return sessionsByMonth;
+    return sessionByMonth;
 }
 
 export const add = async (session) => {
@@ -46,7 +46,8 @@ export const add = async (session) => {
         ...session,
         river: river,
         user: user,
-        time: new Date(session.time)
+        startDate: new Date(session.startDate),
+        endDate: new Date(session.endDate)
     }
     return SessionRepository.save(newSession);
 }

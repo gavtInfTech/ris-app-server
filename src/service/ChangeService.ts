@@ -21,14 +21,21 @@ export const getBySession = async (sessionId) => {
       id: sessionId,
     },
   });
-  let changes = ChangeRepository.find({
+  let changes = await ChangeRepository.find({
     where: {
-        session: session,
+      session: session,
     },
     relations: {
-        session: true
-    } 
+      session: true,
+    },
   });
-  
-  return changes;
+
+  let changesDto: any = [];
+  changes.forEach((item) => {
+    changesDto.push({
+      ...item,
+      session: item.session.id
+    });
+  });
+  return changesDto;
 };

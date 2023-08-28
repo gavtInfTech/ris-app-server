@@ -12,6 +12,9 @@ export class Change {
     @Column()
     changedId: string
 
+    @Column()
+    date: Date
+
     @ManyToOne(type => Session)
     session: Session
 }

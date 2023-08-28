@@ -15,7 +15,7 @@ export const getAll =  async () => {
             },
         }
     ); 
-    let levelsDto = [];
+    let levelsDto: any = [];
     levels.map(async (level) => {
         levelsDto.push(
             {
@@ -135,8 +135,7 @@ export const add = async (level) => {
 
 export const change = async (level) => {
     let levelGp = new LevelGp();
-    let river = new River();
-    river = await RiverRepository.findOneBy({ name: level.river })
+    let river = await RiverRepository.findOneBy({ name: level.river })
     levelGp = {
         ...level,
         river: river,

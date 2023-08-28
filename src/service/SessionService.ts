@@ -35,6 +35,7 @@ export const getByMonth = async (month, river) => {
         let date = new Date(session.startDate);
         if (date.getMonth() === month && river.name === river) return session;
     })
+    console.log(sessionByMonth)
     return sessionByMonth;
 }
 

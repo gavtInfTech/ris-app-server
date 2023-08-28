@@ -16,11 +16,8 @@ export const add = async (change) => {
 };
 
 export const getBySession = async (sessionId) => {
-  let session = await SessionRepository.find({
-    where: {
-      id: sessionId,
-    },
-  });
+  let session = await SessionRepository.findOneBy({ id: sessionId });
+  if (session === null) return;
   let changes = await ChangeRepository.find({
     where: {
       session: session,

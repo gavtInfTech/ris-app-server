@@ -44,3 +44,20 @@ export const add = async (site) => {
 export const deleteById = async (id) => {
     return SiteRepository.delete( { id: id } ); 
 }
+
+export const getAllByRiver = async (river) => {
+  let sites = await SiteRepository.find({
+    relations: {
+      river: true,
+    },
+  });
+  sites = sites.filter(item => item.name === river);
+  let sitesDto: any[] = [];
+  sites.map(async (site) => {
+    sitesDto.push({
+      ...site,
+      river: site.river.name,
+    });
+  });
+  return sitesDto;
+}

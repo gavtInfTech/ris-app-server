@@ -8,16 +8,16 @@ export class Session {
     id: string
 
     @Column()
-    inspectior1: string
+    inspector1: string
 
     @Column()
-    inspectior2: string
+    inspector2: string
 
     @Column()
-    inspectior3: string
+    inspector3: string
 
     @Column()
-    inspectior4: string
+    inspector4: string
 
     @Column()
     startDate: Date

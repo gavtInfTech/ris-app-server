@@ -33,7 +33,7 @@ export const getByMonth = async (month, river) => {
 
     let sessionByMonth = sessions.find((session) => {
         let date = new Date(session.startDate);
-        if (date.getMonth() === month && river.name === river) return session;
+        if (date.getMonth() == month && session.river.name === river) return session;
     })
     console.log(sessionByMonth)
     return sessionByMonth;

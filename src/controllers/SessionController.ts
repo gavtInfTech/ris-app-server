@@ -6,6 +6,6 @@ export const getByMonth = async (req, res) => {
 }
 
 export const add = async (req, res) => {
-    let notice = await SessionService.add(req.body);
+    let session = await SessionService.add(req.body);
     return res.send("Сессия успешно сохранена!");
   };

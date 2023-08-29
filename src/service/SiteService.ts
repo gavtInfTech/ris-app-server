@@ -51,7 +51,7 @@ export const getAllByRiver = async (river) => {
       river: true,
     },
   });
-  sites = sites.filter(item => item.name === river);
+  sites = sites.filter(item => item.river.name === river);
   let sitesDto: any[] = [];
   sites.map(async (site) => {
     sitesDto.push({

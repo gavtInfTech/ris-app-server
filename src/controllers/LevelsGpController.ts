@@ -33,6 +33,11 @@ export const getAllByPeriod = async (req, res) => {
     return res.send(hydroposts);
 }
 
+export const getAllByPeriodAndRiver = async (req, res) => {
+    let hydroposts = await LevelsGpService.getAllByPeriodAndRiver(req.query.startPeriod, req.query.endPeriod, req.query.river);
+    return res.send(hydroposts);
+}
+
 export const getAllByHydropost = async (req, res) => {
     let levels = await LevelsGpService.getAllByHydropost(req.query.hydropost);
     return res.send(levels);

@@ -116,6 +116,38 @@ export const getAllByPeriod = async (startPeriod, endPeriod) => {
     return gabsDto;
 }
 
+export const getAllByPeriodAndRiver = async (startPeriod, endPeriod, riverName) => {
+    const startPeriodDate = new Date(startPeriod);  
+    const endPeriodDate = new Date(endPeriod);
+    const startDate = new Date(startPeriodDate.getFullYear(), startPeriodDate.getMonth(), startPeriodDate.getDate(), 0, 0, 0);
+    const endDate = new Date(endPeriodDate.getFullYear(), endPeriodDate.getMonth(), endPeriodDate.getDate(), 23, 59, 59); 
+    let gabs = await GabRepository.find(
+        {
+            where: {
+                date: Between(startDate, endDate)
+            },
+            relations: [
+                'site',
+                'site.river'
+            ],
+        }
+    ); 
+
+    gabs.filter((gab) => gab.site.river.name === riverName);
+    
+    let gabsDto: any[] = [];
+    gabs.map(async (gab) => {
+        gabsDto.push(
+            {
+                ...gab,
+                site: gab.site.name,
+                river: gab.site.river.name
+            }
+        )
+    })
+    return gabsDto;
+}
+
 export const add = async (gab) => {
     let newGab = new Gab();
     const currentDate = new Date(gab.date);  

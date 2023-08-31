@@ -28,6 +28,11 @@ export const getAllByPeriod = async (req, res) => {
     return res.send(depths);
 }
 
+export const getAllByPeriodAndRiver = async (req, res) => {
+    let depths = await GabsService.getAllByPeriodAndRiver(req.query.startPeriod, req.query.endPeriod, req.river);
+    return res.send(depths);
+}
+
 export const getAllBySite = async (req, res) => {
     let depths = await GabsService.getAllBySite(req.query.site);
     return res.send(depths);

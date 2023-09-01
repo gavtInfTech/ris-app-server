@@ -10,7 +10,7 @@ export const add = async (req, res) => {
     return res.send(changes);
   }
 
-  export const getSiteChagnesBySession = async (req, res) => {
-    let changes = await ChangeService.getSiteChagnesBySession(req.params.session);
+  export const getSiteChangesBySession = async (req, res) => {
+    let changes = await ChangeService.getSiteChangesBySession(req.params.session);
     return res.send(changes);
   }

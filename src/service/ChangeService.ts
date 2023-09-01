@@ -37,7 +37,7 @@ export const getBySession = async (sessionId) => {
   return changesDto;
 };
 
-export const getSiteChagnesBySession = async (sessionId) => {
+export const getSiteChangesBySession = async (sessionId) => {
   let session = await SessionRepository.findOneBy({ id: sessionId });
   if (session === null) return;
   let changes = await ChangeRepository.find({

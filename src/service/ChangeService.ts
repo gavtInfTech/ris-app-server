@@ -48,7 +48,7 @@ export const getSiteChangesBySession = async (sessionId) => {
       session: true,
     },
   });
-  changes.filter((change) => change.type === "region");
+  changes = changes.filter((change) => change.type === "region");
   let changesDto: any = [];
   changes.forEach((item) => {
     changesDto.push({

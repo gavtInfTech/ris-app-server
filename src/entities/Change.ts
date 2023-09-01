@@ -6,10 +6,10 @@ export class Change {
     @PrimaryColumn()
     id: string
 
-    @Column()
+    @Column({ nullable: true })
     type: string
 
-    @Column()
+    @Column({ nullable: true })
     changedId: string
 
     @Column()

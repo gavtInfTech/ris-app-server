@@ -36,3 +36,25 @@ export const getBySession = async (sessionId) => {
   });
   return changesDto;
 };
+
+export const getSiteChagnesBySession = async (sessionId) => {
+  let session = await SessionRepository.findOneBy({ id: sessionId });
+  if (session === null) return;
+  let changes = await ChangeRepository.find({
+    where: {
+      session: session,
+    },
+    relations: {
+      session: true,
+    },
+  });
+  changes.filter((change) => change.type === "region");
+  let changesDto: any = [];
+  changes.forEach((item) => {
+    changesDto.push({
+      ...item,
+      session: item.session.id
+    });
+  });
+  return changesDto;
+};

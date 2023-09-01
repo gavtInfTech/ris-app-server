@@ -134,7 +134,7 @@ export const getAllByPeriodAndRiver = async (startPeriod, endPeriod, riverName) 
     ); 
 
     gabs.filter((gab) => gab.site.river.name === riverName);
-    
+
     let gabsDto: any[] = [];
     gabs.map(async (gab) => {
         gabsDto.push(

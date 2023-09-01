@@ -15,7 +15,6 @@ import {routerSib} from "./routes/routerSib";
 import {routerSigns} from "./routes/routerSigns";
 import {routerRifts} from "./routes/routerRifts";
 import {routerAlerts} from "./routes/routerAlerts";
-import {routerChanges} from "./routes/routerChanges";
 import {routerSessions} from "./routes/routerSessions";
 import {routerSites} from "./routes/routerSites";
 import {routerSiteAccordances} from "./routes/routerSiteAccordances";
@@ -51,7 +50,6 @@ const startServer = async () => {
       app.use("/api/rifts", routerRifts);
       app.use("/api/alerts", routerAlerts);
       app.use("/api/sessions", routerSessions);
-      app.use("/api/changes", routerChanges);
       app.use("/api/sites", routerSites);
       app.use("/api/siteAccordances", routerSiteAccordances);
 

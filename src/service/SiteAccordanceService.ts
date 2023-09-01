@@ -13,7 +13,8 @@ export const add = async (siteAccordance) => {
     const site = await SiteRepository.findOneBy({ name: siteAccordance.site });
     newSiteAccordance = {
         ...siteAccordance,
-        site: site
+        site: site,
+        date: new Date(siteAccordance.date)
     }
     return AccordanceRepository.save(newSiteAccordance);
 }

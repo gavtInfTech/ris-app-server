@@ -15,6 +15,9 @@ export class Alert {
     @Column()
     comment: string
 
+    @Column()
+    date: Date
+
     @ManyToOne(type => River)
     river: River
 }

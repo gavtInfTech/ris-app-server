@@ -6,3 +6,4 @@ export const routerChanges = express.Router();
 
 routerChanges.post("/add", ChangeController.add);
 routerChanges.get("/getBySession", ChangeController.getBySession);
+routerChanges.get("/getSiteChagnesBySession", ChangeController.getSiteChagnesBySession);

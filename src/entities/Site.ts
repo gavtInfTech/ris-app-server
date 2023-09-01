@@ -10,9 +10,6 @@ export class Site {
     @Column()
     name: string
 
-    @Column()
-    accordance: boolean
-
     @Column('double precision')
     firstKM: number
 

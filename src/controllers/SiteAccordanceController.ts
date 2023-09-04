@@ -6,6 +6,6 @@ export const add = async (req, res) => {
 }
 
 export const getAllByPeriodAndRiver = async (req, res) => {
-    let accordances = await SiteAccordanceService.getAllByPeriodAndRiver(req.query.startPeriod, req.query.endPeriod, req.river);
+    let accordances = await SiteAccordanceService.getAllByPeriodAndRiver(req.query.startPeriod, req.query.endPeriod, req.query.river);
     return res.send(accordances);
 }

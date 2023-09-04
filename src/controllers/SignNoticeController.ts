@@ -6,6 +6,6 @@ export const add = async (req, res) => {
 }
 
 export const getAllByPeriodAndRiver = async (req, res) => {
-    let signNotices = await SignNoticeService.getAllByPeriodAndRiver(req.query.startPeriod, req.query.endPeriod, req.river);
+    let signNotices = await SignNoticeService.getAllByPeriodAndRiver(req.query.startPeriod, req.query.endPeriod, req.query.river);
     return res.send(signNotices);
 }

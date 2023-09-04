@@ -6,7 +6,7 @@ export const getAll = async (req, res) => {
 }
 
 export const getAllByPeriodAndRiver = async (req, res) => {
-    let alerts = await AlertService.getAllByPeriodAndRiver(req.query.startPeriod, req.query.endPeriod, req.river);
+    let alerts = await AlertService.getAllByPeriodAndRiver(req.query.startPeriod, req.query.endPeriod, req.query.river);
     return res.send(alerts);
 }
 

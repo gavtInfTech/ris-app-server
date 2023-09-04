@@ -31,9 +31,6 @@ export class Sign {
     kilometrage: number
 
     @Column()
-    comment: string
-
-    @Column()
     description: string
 
     @ManyToOne(type => River)

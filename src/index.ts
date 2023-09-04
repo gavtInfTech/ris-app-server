@@ -18,6 +18,7 @@ import {routerAlerts} from "./routes/routerAlerts";
 import {routerSessions} from "./routes/routerSessions";
 import {routerSites} from "./routes/routerSites";
 import {routerSiteAccordances} from "./routes/routerSiteAccordances";
+import {routerSignNotices} from "./routes/routerSignNotices";
 import * as SignService from "./service/SignService";
 const http = require('http');
 const https = require('https');
@@ -52,6 +53,7 @@ const startServer = async () => {
       app.use("/api/sessions", routerSessions);
       app.use("/api/sites", routerSites);
       app.use("/api/siteAccordances", routerSiteAccordances);
+      app.use("/api/signNotices", routerSignNotices);
 
       app.use(express.static(path.join('C:/Users/Администратор/RIAS/ris-app-client/build')));
       app.get('*', (req, res) => {

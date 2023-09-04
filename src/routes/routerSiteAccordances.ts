@@ -4,5 +4,5 @@ import { verify } from "../middleware/verify";
 
 export const routerSiteAccordances = express.Router();
 
-routerSiteAccordances.post("/add", verify("operator"), SiteAccordanceController.add);
+routerSiteAccordances.post("/add", SiteAccordanceController.add);
 routerSiteAccordances.get("/getAllByPeriodAndRiver", SiteAccordanceController.getAllByPeriodAndRiver);

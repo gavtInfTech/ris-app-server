@@ -5,6 +5,11 @@ export const getAll = async (req, res) => {
     return res.send(rifts);
 }
 
+export const getAllByPeriodAndRiver = async (req, res) => {
+    let alerts = await AlertService.getAllByPeriodAndRiver(req.query.startPeriod, req.query.endPeriod, req.river);
+    return res.send(alerts);
+}
+
 export const add = async (req, res) => {
     let notice = await AlertService.add(req.body);
     return res.send("Уведомление успешно добавлено!");

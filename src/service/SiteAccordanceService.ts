@@ -10,7 +10,7 @@ const SiteRepository = AppDataSource.getRepository(Site);
 
 export const add = async (siteAccordance) => {
     let newSiteAccordance = new SiteAccordance();
-    const site = await SiteRepository.findOneBy({ name: siteAccordance.site });
+    const site = await SiteRepository.findOneBy({ id: siteAccordance.sign });
     newSiteAccordance = {
         ...siteAccordance,
         site: site,

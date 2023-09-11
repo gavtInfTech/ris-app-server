@@ -7,5 +7,5 @@ export const getAll = async (req, res) => {
 
 export const change = async (req, res) => {
     await RiftService.change(req.body);
-    return res.send("Знак успешно изменен!");
+    return res.send("Перекат успешно изменен!");
 };

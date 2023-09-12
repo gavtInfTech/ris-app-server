@@ -6,3 +6,4 @@ export const routerSignNotices = express.Router();
 
 routerSignNotices.post("/add", SignNoticeController.add);
 routerSignNotices.get("/getAllByPeriodAndRiver", SignNoticeController.getAllByPeriodAndRiver);
+routerSignNotices.get("/getAll", SignNoticeController.getAll);

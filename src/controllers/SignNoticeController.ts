@@ -5,6 +5,11 @@ export const add = async (req, res) => {
     return res.send("Уведомление о знаке успешно добавлено!")
 }
 
+export const getAll = async (req, res) => {
+    let siteNotices = await SignNoticeService.getAll();
+    return res.send(siteNotices);
+}
+
 export const getAllByPeriodAndRiver = async (req, res) => {
     let signNotices = await SignNoticeService.getAllByPeriodAndRiver(req.query.startPeriod, req.query.endPeriod, req.query.river);
     return res.send(signNotices);

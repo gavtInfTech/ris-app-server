@@ -19,6 +19,27 @@ export const add = async (signNotice) => {
     return SignNoticeRepository.save(newSignNotice);
 }
 
+export const getAll = async () => {
+
+    let signNotices = await SignNoticeRepository.find(
+        {
+            relations: [
+                'sign',
+                'sign.river'
+            ],
+        }
+    ); 
+
+    let signNoticesDto: any[] = [];
+    signNotices.map(async (signAlert) => {
+        signNoticesDto.push({
+        ...signAlert,
+        sign: signAlert.sign.id,
+        });
+    });
+    return signNoticesDto;
+}
+
 export const getAllByPeriodAndRiver = async (startPeriod, endPeriod, river) => {
     const startPeriodDate = new Date(startPeriod);  
     const endPeriodDate = new Date(endPeriod);
@@ -38,12 +59,12 @@ export const getAllByPeriodAndRiver = async (startPeriod, endPeriod, river) => {
 
     signNotices = signNotices.filter(item => item.sign.river.name === river);
     let signNoticesDto: any[] = [];
-    signNotices.map(async (signAlert) => {
+    signNotices.map(async (signNotice) => {
         signNoticesDto.push({
-        ...signAlert,
-        sign: signAlert.sign.description,
-        latitude: signAlert.sign.latitude,
-        longitude: signAlert.sign.longitude
+        ...signNotice,
+        sign: signNotice.sign.description,
+        latitude: signNotice.sign.latitude,
+        longitude: signNotice.sign.longitude
         });
     });
     return signNoticesDto;

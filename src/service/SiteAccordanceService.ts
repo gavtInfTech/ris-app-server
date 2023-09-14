@@ -10,7 +10,7 @@ const SiteRepository = AppDataSource.getRepository(Site);
 
 export const add = async (siteAccordance) => {
     let newSiteAccordance = new SiteAccordance();
-    const site = await SiteRepository.findOneBy({ id: siteAccordance.sign });
+    const site = await SiteRepository.findOneBy({ id: siteAccordance.site });
     newSiteAccordance = {
         ...siteAccordance,
         site: site,
@@ -18,6 +18,23 @@ export const add = async (siteAccordance) => {
     }
     return AccordanceRepository.save(newSiteAccordance);
 }
+
+export const getAll = async () => {
+    let accordances = await AccordanceRepository.find({
+        relations: [
+            'site',
+            'site.river'
+        ],
+    });
+    let accordancesDto: any[] = [];
+    accordances.map(async (site) => {
+        accordancesDto.push({
+        ...site,
+        site: site.id,
+      });
+    });
+    return accordancesDto;
+  };
 
 export const getAllByPeriodAndRiver = async (startPeriod, endPeriod, river) => {
     const startPeriodDate = new Date(startPeriod);  

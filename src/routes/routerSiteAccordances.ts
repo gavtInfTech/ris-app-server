@@ -6,3 +6,4 @@ export const routerSiteAccordances = express.Router();
 
 routerSiteAccordances.post("/add", SiteAccordanceController.add);
 routerSiteAccordances.get("/getAllByPeriodAndRiver", SiteAccordanceController.getAllByPeriodAndRiver);
+routerSiteAccordances.get("/getAll", SiteAccordanceController.getAll);

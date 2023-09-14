@@ -5,6 +5,11 @@ export const add = async (req, res) => {
     return res.send("Информация об участке успешно добавлена!")
 }
 
+export const getAll = async (req, res) => {
+    let accordances = await SiteAccordanceService.getAll();
+    return res.send(accordances);
+}
+
 export const getAllByPeriodAndRiver = async (req, res) => {
     let accordances = await SiteAccordanceService.getAllByPeriodAndRiver(req.query.startPeriod, req.query.endPeriod, req.query.river);
     return res.send(accordances);

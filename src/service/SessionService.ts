@@ -35,8 +35,13 @@ export const getByMonth = async (month, river) => {
         let date = new Date(session.startDate);
         if (date.getMonth() == month && session.river.name === river) return session;
     })
-    console.log(sessionByMonth)
-    return sessionByMonth;
+
+    if (sessionByMonth === undefined) return undefined;
+
+    return {
+        ...sessionByMonth,
+        user: sessionByMonth.user.id
+    };
 }
 
 export const add = async (session) => {

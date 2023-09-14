@@ -142,24 +142,16 @@ export const getAllByPeriodAndRiver = async (
   river.name = riverName;
   let levels: any = [];
   if (riverName === "Припять1" || riverName === "Припять2") {
-    let river1 = new River();
-    river1.name = "Мухавец";
-    let river2 = new River();
-    river2.name = "Днепро-Бугский канал";
-    let river3 = new River();
-    river3.name = "Мухавец";
-    let river4 = new River();
-    river4.name = "Припять";
+    river.name = "Припять";
     levels = await LevelGpRepository.find({
       where: {
         date: Between(startDate, endDate),
-        river: [river1, river2, river3, river4]
+        river: river,
       },
       relations: {
         river: true,
       },
     });
-    console.log(levels);
   } else {
     levels = await LevelGpRepository.find({
       where: {

@@ -152,6 +152,19 @@ export const getAllByPeriodAndRiver = async (
         river: true,
       },
     });
+    if (riverName === "Припять1") {
+      levels.filter(
+        (level) =>
+          level.name === "Петриков" ||
+          level.name === "Черничи" ||
+          level.name === "Наровля" ||
+          level.name === "Мозырь"
+      );
+    } else {
+      levels.filter(
+        (level) => level.name === "Пинск" || level.name === "Коробье"
+      );
+    }
   } else {
     levels = await LevelGpRepository.find({
       where: {

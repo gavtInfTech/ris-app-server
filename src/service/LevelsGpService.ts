@@ -153,16 +153,16 @@ export const getAllByPeriodAndRiver = async (
       },
     });
     if (riverName === "Припять1") {
-      levels.filter(
+      levels = levels.filter(
         (level) =>
-          level.hydropost === "Петриков" ||
+          (level.hydropost === "Петриков" ||
           level.hydropost === "Черничи" ||
           level.hydropost === "Наровля" ||
-          level.hydropost === "Мозырь"
+          level.hydropost === "Мозырь")
       );
     } else {
-      levels.filter(
-        (level) => level.hydropost === "Пинск" || level.hydropost === "Коробье"
+      levels = levels.filter(
+        (level) => (level.hydropost === "Пинск" || level.hydropost === "Коробье")
       );
     }
   } else {

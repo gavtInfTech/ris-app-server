@@ -38,7 +38,7 @@ export const getAllByPeriodAndRiver = async (startPeriod, endPeriod, riverName) 
       }
   ); 
 
-  alerts.filter((alert) => alert.river.name === riverName);
+  alerts = alerts.filter((alert) => alert.river.name === riverName);
 
   let alertsDto: any[] = [];
   alerts.map(async (alert) => {

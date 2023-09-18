@@ -5,4 +5,4 @@ import { verify } from "../middleware/verify"
 export const routerRifts = express.Router();
 
 routerRifts.get("/getAll", RiftController.getAll);
-routerRifts.get("/change", RiftController.change);
+routerRifts.post("/change", RiftController.change);

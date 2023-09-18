@@ -62,6 +62,7 @@ export const getAllByPeriodAndRiver = async (startPeriod, endPeriod, river) => {
     signNotices.map(async (signNotice) => {
         signNoticesDto.push({
         ...signNotice,
+        kilometrage: signNotice.sign.kilometrage,
         sign: signNotice.sign.description,
         latitude: signNotice.sign.latitude,
         longitude: signNotice.sign.longitude

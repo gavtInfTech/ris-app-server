@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, PrimaryColumn, OneToMany, JoinColumn } from "typeorm"
 import { River } from "./River";
-import { Notice } from "./Notice";
+import { Organisation } from "./Organisation";
 
 @Entity()
 export class Site {
@@ -18,4 +18,7 @@ export class Site {
     
     @ManyToOne(() => River)
     river: River;
+
+    @ManyToOne(() => Organisation)
+    organisation: Organisation;
 }

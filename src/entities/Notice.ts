@@ -21,6 +21,6 @@ export class Notice {
     @Column()
     cause3: boolean
 
-    @ManyToOne(() => Site)
+    @ManyToOne(() => Site, { onDelete: 'CASCADE' })
     site: Site;
 }

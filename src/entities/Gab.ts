@@ -27,6 +27,6 @@ export class Gab {
     @Column({ nullable: true })
     forecastDate: Date
 
-    @ManyToOne(type => Site)
+    @ManyToOne(type => Site, { onDelete: 'CASCADE' })
     site: Site
 }

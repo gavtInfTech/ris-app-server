@@ -18,7 +18,7 @@ export const getAll =  async () => {
             },
         }
     ); 
-    let usersDto = [];
+    let usersDto: any = [];
     users.map((user) => {
         usersDto.push(
             {

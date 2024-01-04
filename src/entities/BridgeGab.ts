@@ -17,4 +17,10 @@ export class BridgeGab {
 
     @ManyToOne(type => River)
     river: River
+
+    @Column({ nullable: true })
+    typeOfChange: string
+
+    @Column({ nullable: true })
+    confirmation: boolean
 }

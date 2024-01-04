@@ -27,4 +27,10 @@ export class Dislocation {
 
     @ManyToOne(type => Organisation)
     organisation: Organisation
+
+    @Column({ nullable: true })
+    typeOfChange: string
+
+    @Column({ nullable: true })
+    confirmation: boolean
 }

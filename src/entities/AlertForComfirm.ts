@@ -2,7 +2,7 @@ import { Entity, Column, ManyToOne, PrimaryColumn } from "typeorm"
 import { River } from "./River";
 
 @Entity()
-export class Alert {
+export class AlertForComfirm {
     @PrimaryColumn()
     id: string
 

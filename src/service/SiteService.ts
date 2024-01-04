@@ -2,10 +2,14 @@ import { Site } from "../entities/Site";
 import { River } from "../entities/River";
 import { Organisation } from "../entities/Organisation";
 import { AppDataSource } from "../data-source";
+import { Marshrutnik } from "../entities/Marshrutnik";
+import { SiteAccordance } from "../entities/SiteAccordance";
 
+const MarshrutnikRepository = AppDataSource.getRepository(Marshrutnik);
 const SiteRepository = AppDataSource.getRepository(Site);
 const RiverRepository = AppDataSource.getRepository(River);
 const OrganisationRepository = AppDataSource.getRepository(Organisation);
+const AccordanceRepository = AppDataSource.getRepository(SiteAccordance)
 
 export const getAll = async () => {
   let sites = await SiteRepository.find({
@@ -49,9 +53,17 @@ export const add = async (site) => {
     return SiteRepository.save(newSite);
 }
 
-export const deleteById = async (id) => {
-    return SiteRepository.delete( { id: id } ); 
-}
+export const deleteById = async (siteId) => {
+  // Find all Marshrutniks associated with the given Site
+  const marshrutniksToDelete = await MarshrutnikRepository.find({ where: { site: { id: siteId } } });
+  const accordanceToDelete = await AccordanceRepository.find({ where: { site: { id: siteId } } });
+
+  // Delete Marshrutniks
+  await MarshrutnikRepository.remove(marshrutniksToDelete);
+  await AccordanceRepository.remove(accordanceToDelete);
+
+  await SiteRepository.delete({ id: siteId });
+};
 
 export const getAllByRiver = async (river) => {
   let sites = await SiteRepository.find({

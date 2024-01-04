@@ -1,9 +1,8 @@
 import express from "express"; 
-import path from "path";
-import cors from 'cors';
 import { AppDataSource } from "./data-source";
 import cookieParser from "cookie-parser";
 import {routerAuth} from "./routes/routerAuth";
+<<<<<<< HEAD
 import {routerClients} from "./routes/routerClients";
 import {routerLevelsGp} from "./routes/routerLevelsGp";
 import {routerLevelsGu} from "./routes/routerLevelsGu";
@@ -35,6 +34,9 @@ const limiter = rateLimit({
   message: "Too many requests from this IP, please try again later.",
 });
 
+=======
+import cors from 'cors';
+>>>>>>> 61fbec8379cbdecd4c73ea61d6beea5bd538db67
 const startServer = async () => {
     try {
       await AppDataSource.initialize().then(() => {
@@ -59,7 +61,9 @@ const startServer = async () => {
       );
       app.use(limiter);
       app.use(express.json());
+      app.use(cookieParser());
       app.use(cors({
+<<<<<<< HEAD
         origin: ['http://localhost:3000', 'http://localhost:8000', 'http://192.168.1.67:3000', 'https://178.124.171.122', 'https://rias.by'],
         credentials: true,
       }));
@@ -94,6 +98,16 @@ const startServer = async () => {
       });
 
       return server; 
+=======
+        origin: ['http://localhost:3000'],
+        credentials: true,
+      }));
+      app.use("/api/auth", routerAuth);
+      app.listen(5000, ()=>{
+        console.log("All right!")
+      })
+
+>>>>>>> 61fbec8379cbdecd4c73ea61d6beea5bd538db67
     } catch (err) {
       console.error("Error during Server initialization:", err);
     }

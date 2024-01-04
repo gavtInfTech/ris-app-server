@@ -2,18 +2,13 @@ import { Entity, Column, PrimaryColumn } from "typeorm"
 
 @Entity()
 export class Client {
-    @PrimaryColumn()
-    id: string
-
     @Column()
     fio: string
 
-    @Column()
+    @PrimaryColumn()
     email: string
 
     @Column()
     password: string
 
-    @Column()
-    confirmed: boolean
 }

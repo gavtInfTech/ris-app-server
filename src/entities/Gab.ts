@@ -6,10 +6,10 @@ export class Gab {
     @PrimaryColumn()
     id: string
 
-    @Column()
+    @Column({ nullable: true })
     depth: string
 
-    @Column()
+    @Column({ nullable: true })
     width: string
 
     @Column({ nullable: true })
@@ -29,4 +29,10 @@ export class Gab {
 
     @ManyToOne(type => Site, { onDelete: 'CASCADE' })
     site: Site
+
+    @Column({ nullable: true })
+    typeOfChange: string
+
+    @Column({ nullable: true })
+    confirmation: boolean
 }

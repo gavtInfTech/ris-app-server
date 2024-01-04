@@ -15,15 +15,16 @@ import { DataSource } from "typeorm"
 // })
 
 export const AppDataSource = new DataSource({
-    type: "mysql",
-    host: "localhost",
-    port: 3300,
-    username: "root",
-    password: "password",
-    database: "rias",
-  
+    type: 'postgres',
+    host: 'localhost',
+    port: 5432, // PostgreSQL default port
+    username: 'postgres',
+    password: 'password',
+    database: 'rias',
+
     synchronize: true,
     logging: true,
-    entities: ["src/entities/*.ts"],
-})
+    entities: ['src/entities/*.ts'],
+});
+
 

@@ -11,7 +11,7 @@ export const getAll =  async () => {
     let users = await UserRepository.find(
         {
             where: {
-                role: In(['Оператор', 'Путевик']),
+                role: In(['Диспетчер', 'Путевик']),
             },
             relations: {
                 organisation: true,

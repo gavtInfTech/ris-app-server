@@ -40,15 +40,13 @@ export const getAll = async () => {
     return signNoticesDto;
 }
 
-export const getAllByPeriodAndRiver = async (startPeriod, endPeriod, river) => {
-    const startPeriodDate = new Date(startPeriod);  
-    const endPeriodDate = new Date(endPeriod);
-    const startDate = new Date(startPeriodDate.getFullYear(), startPeriodDate.getMonth(), startPeriodDate.getDate(), 0, 0, 0);
-    const endDate = new Date(endPeriodDate.getFullYear(), endPeriodDate.getMonth(), endPeriodDate.getDate(), 23, 59, 59); 
+export const getAllByPeriodAndRiver = async (session, river) => {
+    console.log(session);
+    console.log("THIS IS SESSION ID", session.id)
     let signNotices = await SignNoticeRepository.find(
         {
             where: {
-                date: Between(startDate, endDate)
+                session: {id: session}
             },
             relations: [
                 'sign',
@@ -56,8 +54,12 @@ export const getAllByPeriodAndRiver = async (startPeriod, endPeriod, river) => {
             ],
         }
     ); 
+    
+    console.log("SIIGNGNG", signNotices)
 
     signNotices = signNotices.filter(item => item.sign.river.name === river);
+    console.log("SIIGNGNG FILTEEEEERES", signNotices)
+
     let signNoticesDto: any[] = [];
     signNotices.map(async (signNotice) => {
         signNoticesDto.push({
@@ -68,5 +70,6 @@ export const getAllByPeriodAndRiver = async (startPeriod, endPeriod, river) => {
         longitude: signNotice.sign.longitude
         });
     });
+    console.log("THISS IS DTO", signNoticesDto)
     return signNoticesDto;
 }

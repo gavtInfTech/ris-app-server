@@ -195,7 +195,7 @@ export const hydronodesData = [
         level2: '—',
         level1Change: '—',
         level2Change: '—',
-        coords: [53.861766, 23.748762]
+        coords: [53.869459, 23.757462]
     },
 
 ]

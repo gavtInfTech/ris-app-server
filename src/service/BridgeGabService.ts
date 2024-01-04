@@ -79,18 +79,56 @@ export const add = async (bridge) => {
 
 export const change = async (bridge) => {
     const river = await RiverRepository.findOneBy({ name: bridge.river });
+
+    if (bridge.id.includes("_change") && bridge.confirmation){
+        await BridgeRepository.delete({ id: bridge.id }); 
+        bridge.id = bridge.id.replace(/_change$/, '');
+    }
+
     let changedBridge = {
         ...bridge,
         river: river,
         date: new Date(bridge.date)
     };
-    await BridgeRepository.delete( { id: bridge.id } ); 
+
     return BridgeRepository.save(changedBridge);
 }
 
 export const deleteById = async (id) => {
     return BridgeRepository.delete( { id: id } ); 
 }
+
+export const deleteByIdWithConfirm = async (id) => {
+    try {
+      // Find the LevelGp record by id
+      const levelGuToUpdate = await BridgeRepository.findOne(
+        {
+          where: {
+            id: id
+          },
+        }
+      );
+  
+      // Check if the record exists
+      if (levelGuToUpdate) {
+        // Update the status field to "Удалено"
+        levelGuToUpdate.typeOfChange = 'Удалено';
+        levelGuToUpdate.confirmation = false;
+        // Save the updated record
+        await BridgeRepository.save(levelGuToUpdate);
+  
+        // Return the updated record
+        return levelGuToUpdate;
+      } else {
+        // If the record with the provided id is not found, you can throw an error or handle it as needed.
+        throw new Error(`LevelGp record with id ${id} not found.`);
+      }
+    } catch (error) {
+      // Handle errors, log them, or throw them as needed
+      console.error('Error deleting LevelGp record:', error);
+      throw error;
+    }
+  };
 
 export const getAllByDate = async (date) => {
     const currentDate = new Date(date);  

@@ -28,21 +28,31 @@ export const getByMonth = async (month, river) => {
         relations: {
             river: true,
             user: true
-          },
-    })
+        },
+    });
 
-    let sessionByMonth = sessions.find((session) => {
+    let sessionsInMonth = sessions.filter((session) => {
         let date = new Date(session.startDate);
-        if (date.getMonth() == month && session.river.name === river) return session;
-    })
+        return date.getMonth() == month && session.river.name === river;
+    });
 
-    if (sessionByMonth === undefined) return undefined;
+    if (sessionsInMonth.length === 0) {
+        return undefined;
+    }
+
+    // Найдем среди сессий в месяце ту, у которой самая поздняя дата
+    let latestSession = sessionsInMonth.reduce((latest, session) => {
+        let sessionDate = new Date(session.startDate);
+        let latestDate = new Date(latest.startDate);
+        return sessionDate > latestDate ? session : latest;
+    });
 
     return {
-        ...sessionByMonth,
-        user: sessionByMonth.user.id
+        ...latestSession,
+        user: latestSession.user.id
     };
 }
+
 
 export const add = async (session) => {
     let newSession = new Session();

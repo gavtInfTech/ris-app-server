@@ -1,9 +1,11 @@
 import { Sign } from "../entities/Sign";
 import { River } from "../entities/River";
 import { AppDataSource } from "../data-source";
+import { SignNotice } from "../entities/SignNotice";
 
 const SignRepository = AppDataSource.getRepository(Sign);
 const RiverRepository = AppDataSource.getRepository(River);
+const SignNoticeRepository = AppDataSource.getRepository(SignNotice);
 
 export const getAll = async () => {
   let signs = await SignRepository.find({
@@ -61,3 +63,18 @@ export const deleteByRiver = async (riverId: string) => {
     console.error("Error deleting signs:", error);
   }
 };
+
+export const deleteSignWithNoticesById = async (signId) => {
+  try {
+  
+    await SignNoticeRepository.delete({
+      sign: signId,
+    });
+    
+    let signDelete = await SignRepository.delete(signId);
+    console.log(signDelete);
+
+  } catch (error) {
+    console.error("Ошибка при удалении:", error);
+  }
+}

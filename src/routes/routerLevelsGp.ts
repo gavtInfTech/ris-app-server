@@ -6,9 +6,10 @@ export const routerLevelsGp = express.Router();
  
 routerLevelsGp.get("/getAll", LevelsGpController.getAll);
 routerLevelsGp.get("/getAllByHydropost", LevelsGpController.getAllByHydropost);
-routerLevelsGp.post("/add", verify("operator"), LevelsGpController.add);
-routerLevelsGp.post("/change", verify("operator"), LevelsGpController.change);
-routerLevelsGp.delete("/delete/:id", verify("operator"), LevelsGpController.deleteById);
+routerLevelsGp.post("/add", verify("Диспетчер"), LevelsGpController.add);
+routerLevelsGp.post("/change", verify("Диспетчер"), LevelsGpController.change);
+routerLevelsGp.delete("/delete/:id", verify("Диспетчер"), LevelsGpController.deleteById);
 routerLevelsGp.get("/getAllByDate", LevelsGpController.getAllByDate);
 routerLevelsGp.get("/getAllByPeriod", LevelsGpController.getAllByPeriod);
 routerLevelsGp.get("/getAllByPeriodAndRiver", LevelsGpController.getAllByPeriodAndRiver);
+routerLevelsGp.post("/deleteWithConfirm/:id", LevelsGpController.deleteByIdWithConfirm);

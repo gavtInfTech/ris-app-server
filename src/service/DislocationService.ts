@@ -133,6 +133,12 @@ export const add = async (dislocation) => {
 export const change = async (dislocation) => {
     let updatedDislocation = new Dislocation();
     const organisation = await OrganisationRepository.findOneBy({ name: dislocation.organisation });
+
+    if (dislocation.id.includes("_change") && dislocation.confirmation){
+        await DislocationRepository.delete({ id: dislocation.id }); 
+        dislocation.id = dislocation.id.replace(/_change$/, '');
+    }
+
     updatedDislocation = {
         ...dislocation,
         organisation: organisation,
@@ -145,3 +151,35 @@ export const change = async (dislocation) => {
 export const deleteById = async (id) => {
     return DislocationRepository.delete( {id: id} ); 
 }
+
+export const deleteByIdWithConfirm = async (id) => {
+    try {
+      // Find the LevelGp record by id
+      const DislocationToUpdate = await DislocationRepository.findOne(
+        {
+          where: {
+            id: id
+          },
+        }
+      );
+  
+      // Check if the record exists
+      if (DislocationToUpdate) {
+        // Update the status field to "Удалено"
+        DislocationToUpdate.typeOfChange = 'Удалено';
+        DislocationToUpdate.confirmation = false;
+        // Save the updated record
+        await DislocationRepository.save(DislocationToUpdate);
+  
+        // Return the updated record
+        return DislocationToUpdate;
+      } else {
+        // If the record with the provided id is not found, you can throw an error or handle it as needed.
+        throw new Error(`DislocationToUpdate record with id ${id} not found.`);
+      }
+    } catch (error) {
+      // Handle errors, log them, or throw them as needed
+      console.error('Error deleting DislocationToUpdate record:', error);
+      throw error;
+    }
+  };

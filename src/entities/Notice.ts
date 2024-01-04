@@ -6,7 +6,7 @@ export class Notice {
     @PrimaryColumn()
     id: string
 
-    @Column("varchar", { length: 1000 })
+    @Column("varchar", { length: 1000, nullable: true } )
     content
 
     @Column()

@@ -178,6 +178,10 @@ export const add = async (gab) => {
 export const change = async (gab) => {
     let updatedGab = new Gab();
     const site = await SiteRepository.findOneBy({ name: gab.site });
+    if (gab.id.includes("_change") && gab.confirmation){
+        await GabRepository.delete({ id: gab.id }); 
+        gab.id = gab.id.replace(/_change$/, '');
+    }
     updatedGab = {
         ...gab,
         site: site,
@@ -190,3 +194,35 @@ export const change = async (gab) => {
 export const deleteById = async (id) => {
     return GabRepository.delete( { id: id } ); 
 }
+
+export const deleteByIdWithConfirm = async (id) => {
+    try {
+      // Find the LevelGp record by id
+      const GabToUpdate = await GabRepository.findOne(
+        {
+          where: {
+            id: id
+          },
+        }
+      );
+  
+      // Check if the record exists
+      if (GabToUpdate) {
+        // Update the status field to "Удалено"
+        GabToUpdate.typeOfChange = 'Удалено';
+        GabToUpdate.confirmation = false;
+        // Save the updated record
+        await GabRepository.save(GabToUpdate);
+  
+        // Return the updated record
+        return GabToUpdate;
+      } else {
+        // If the record with the provided id is not found, you can throw an error or handle it as needed.
+        throw new Error(`GabToUpdate record with id ${id} not found.`);
+      }
+    } catch (error) {
+      // Handle errors, log them, or throw them as needed
+      console.error('Error deleting GabToUpdate record:', error);
+      throw error;
+    }
+  };

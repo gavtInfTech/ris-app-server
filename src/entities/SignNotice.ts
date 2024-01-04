@@ -1,5 +1,6 @@
 import { Entity, Column, ManyToOne, PrimaryColumn } from "typeorm"
 import { Sign } from "./Sign";
+import { Session } from "./Session"; 
 
 @Entity()
 export class SignNotice {
@@ -14,4 +15,7 @@ export class SignNotice {
 
     @ManyToOne(() => Sign)
     sign: Sign;
+
+    @ManyToOne(() => Session)  // Добавлено поле связи с сессией
+    session: Session;
 }

@@ -174,6 +174,10 @@ export const getAllByPeriod = async (startPeriod, endPeriod) => {
 export const change = async (level) => {
     let levelGu = new LevelGu();
     const river = await RiverRepository.findOneBy({ name: level.river });
+    if (level.id.includes("_change") && level.confirmation){
+        await LevelsGuRepository.delete({ id: level.id }); 
+        level.id = level.id.replace(/_change$/, '');
+    }
     levelGu = {
         ...level,
         river: river,
@@ -185,3 +189,35 @@ export const change = async (level) => {
 export const deleteById = async (id) => {
     return LevelsGuRepository.delete( { id: id } ); 
 }
+
+export const deleteByIdWithConfirm = async (id) => {
+    try {
+      // Find the LevelGp record by id
+      const levelGuToUpdate = await LevelsGuRepository.findOne(
+        {
+          where: {
+            id: id
+          },
+        }
+      );
+  
+      // Check if the record exists
+      if (levelGuToUpdate) {
+        // Update the status field to "Удалено"
+        levelGuToUpdate.typeOfChange = 'Удалено';
+        levelGuToUpdate.confirmation = false;
+        // Save the updated record
+        await LevelsGuRepository.save(levelGuToUpdate);
+  
+        // Return the updated record
+        return levelGuToUpdate;
+      } else {
+        // If the record with the provided id is not found, you can throw an error or handle it as needed.
+        throw new Error(`LevelGp record with id ${id} not found.`);
+      }
+    } catch (error) {
+      // Handle errors, log them, or throw them as needed
+      console.error('Error deleting LevelGp record:', error);
+      throw error;
+    }
+  };
